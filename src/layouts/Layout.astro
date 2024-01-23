@@ -40,12 +40,11 @@ const { description, title, author } = Astro.props;
   import Notes from "reveal.js/plugin/notes/notes";
 
   const deck = new Reveal({
-    autoAnimateEasing: "ease",
-    autoAnimateDuration: 1,
+    transition: "convex",
     hash: true,
-    controls: true,
-    keyboard: true,
-    progress: true,
+    hashOneBasedIndex: true,
+    history: true,
+    hideCursorTime: 2000,
   });
 
   deck.initialize({
