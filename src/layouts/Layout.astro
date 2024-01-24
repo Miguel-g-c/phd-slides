@@ -1,5 +1,4 @@
 ---
-import "@fontsource-variable/onest";
 import "@fontsource-variable/jetbrains-mono";
 import "reveal.js/dist/reset.css";
 import "reveal.js/dist/reveal.css";
@@ -51,46 +50,9 @@ const { description, title, author } = Astro.props;
     plugins: [Highlight, Notes],
   });
 </script>
-<!-- 
+
 <style is:global>
-  /* :root {
-    color-scheme: dark;
-  } */
-
-  html {
-    font-family: "Onest Variable", system-ui, sans-serif;
-    /* scroll-behavior: smooth; */
+  :root {
+    --r-code-font: "JetBrains Mono Variable", monospace;
   }
-  /* 
-  body {
-    color: rgba(17, 17, 17, 0.9);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overscroll-behavior: none;
-  } */
-
-  /* @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    body {
-      color: rgba(255, 255, 255, 0.9);
-    }
-  } */
-  code {
-    font-family:
-      "JetBrains Mono Variable",
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  }
-</style> -->
+</style>
