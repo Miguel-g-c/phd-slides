@@ -1,4 +1,5 @@
 ---
+import CodeBlock from "../components/CodeBlock.astro";
 import Slide from "../components/Slide.astro";
 import Layout from "../layouts/Layout.astro";
 ---
@@ -11,10 +12,14 @@ import Layout from "../layouts/Layout.astro";
   <Slide>
     <h1>Slide 1</h1>
     <p>This is a paragraph</p>
-    <pre><code data-trim data-noescape data-line-numbers>
-	def function():
-		print("Hello world!")
-	</code></pre>
+    <CodeBlock>
+      {
+        `
+		def function(): 
+			print("Hello world!")
+	  `
+      }
+    </CodeBlock>
     <aside class="notes">Just a note</aside>
   </Slide>
   <Slide>
