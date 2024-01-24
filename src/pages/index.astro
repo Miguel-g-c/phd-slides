@@ -1,4 +1,5 @@
 ---
+import Slide from "../components/Slide.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -7,7 +8,7 @@ import Layout from "../layouts/Layout.astro";
   description="Sitio web de la defensa de doctorado para 'Una Nueva Herramienta Holística e Integrada para el Eco-Diseño de Procesos Industriales' por Miguel García Casas. Éste presenta una investigación que integra la simulación de procesos, el análisis del ciclo de vida (ACV) y el coste del ciclo de vida (ACCV) para la optimización basada en la sostenibilidad de los procesos industriales."
   author="Miguel García Casas"
 >
-  <section>
+  <Slide>
     <h1>Slide 1</h1>
     <p>This is a paragraph</p>
     <pre><code data-trim data-noescape data-line-numbers>
@@ -15,9 +16,9 @@ import Layout from "../layouts/Layout.astro";
 		print("Hello world!")
 	</code></pre>
     <aside class="notes">Just a note</aside>
-  </section>
-  <section>
+  </Slide>
+  <Slide>
     <h1>Slide 2</h1>
     <p>This is a paragraph</p>
-  </section>
+  </Slide>
 </Layout>
