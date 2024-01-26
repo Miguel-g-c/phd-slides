@@ -1,5 +1,35 @@
+---
+interface Props {
+  language: string;
+  highlightLines?: string;
+  trim?: boolean;
+  lineNumbers?: boolean;
+  lineOffset?: number;
+}
+
+const {
+  language,
+  highlightLines,
+  trim = true,
+  lineNumbers = true,
+  lineOffset,
+} = Astro.props;
+
+const dataLineNumbers = highlightLines
+  ? highlightLines
+  : lineNumbers
+    ? ""
+    : undefined;
+---
+
 <pre>
-  <code data-trim data-noescape data-line-numbers>
+  <code 
+    class={`language-${language}`}
+    data-noescape 
+    data-trim={trim ? "" : undefined} 
+    data-line-numbers={dataLineNumbers}
+    data-ln-start-from={lineOffset}
+  >
     <slot />
   </code>
 </pre>
