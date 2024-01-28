@@ -1,0 +1,718 @@
+[
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.03470737
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 369.326337
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 2.367184294
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 7.428018658
+      },
+      {
+        "name": "Power working fluid",
+        "value": "water"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 54.90742324
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.644380711
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 1.695134125
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.03470737
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 369.326337
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 2.367184294
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 7.428018658
+      },
+      {
+        "name": "Power working fluid",
+        "value": "water"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 54.90742324
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.644380711
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 1.695134125
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.086493496
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 394.3407239
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 2.807400245
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 9.602273261
+      },
+      {
+        "name": "Power working fluid",
+        "value": "cyclopentane"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 55.46077066
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.650485846
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 1.792605619
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.086493496
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 394.3407239
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 2.807400245
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 9.602273261
+      },
+      {
+        "name": "Power working fluid",
+        "value": "cyclopentane"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 55.46077066
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.650485846
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 1.792605619
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.339835267
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 355.6039273
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 3.719892973
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 7.173578896
+      },
+      {
+        "name": "Power working fluid",
+        "value": "water"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.162772
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.107445038
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 1.892810364
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.462105143
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 332.160917
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 3.399116017
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 5.790826811
+      },
+      {
+        "name": "Power working fluid",
+        "value": "cyclopentane"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.28423193
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.167834865
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 2.156099289
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.462105143
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 332.160917
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 3.399116017
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 5.790826811
+      },
+      {
+        "name": "Power working fluid",
+        "value": "cyclopentane"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.28423193
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.167834865
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 2.156099289
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.151059744
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 363.3407489
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 5.649053691
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 9.721281836
+      },
+      {
+        "name": "Power working fluid",
+        "value": "water"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.19236606
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.131976624
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 2.69936672
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.400552767
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 355.7108037
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 3.414893117
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 4.637686395
+      },
+      {
+        "name": "Power working fluid",
+        "value": "cyclopentane"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.32855391
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.186412132
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 2.73152462
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.325817208
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 372.6467127
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 5.84102356
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 9.722821134
+      },
+      {
+        "name": "Power working fluid",
+        "value": "water"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.26612527
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.145406775
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 2.843830258
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.325817208
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 372.6467127
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 5.84102356
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 9.722821134
+      },
+      {
+        "name": "Power working fluid",
+        "value": "water"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.26612527
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.145406775
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 2.843830258
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.522928552
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 320.1433691
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 7.053416514
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 8.81168317
+      },
+      {
+        "name": "Power working fluid",
+        "value": "cyclopentane"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.35914866
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.218071377
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 4.655325388
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.35254005
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 305.3714363
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 8.564325923
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 8.443607734
+      },
+      {
+        "name": "Power working fluid",
+        "value": "cyclopentane"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.36377934
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.294233998
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 7.729099306
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.238976764
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 295.5574807
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 6.305429183
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 4.699101995
+      },
+      {
+        "name": "Power working fluid",
+        "value": "cyclopentane"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.36589574
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.333562491
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 9.514681825
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.238976764
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 295.5574807
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 6.305429183
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 4.699101995
+      },
+      {
+        "name": "Power working fluid",
+        "value": "cyclopentane"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.36589574
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.333562491
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 9.514681825
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.512895677
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 301.8990628
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 12.42685105
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 9.635836705
+      },
+      {
+        "name": "Power working fluid",
+        "value": "cyclopentane"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.37854211
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.438312338
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 14.5413056
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.512895677
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 301.8990628
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 12.42685105
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 9.635836705
+      },
+      {
+        "name": "Power working fluid",
+        "value": "cyclopentane"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.37854211
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.438312338
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 14.5413056
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": 4.016301783
+      },
+      {
+        "name": "Reactor Temperature [C]",
+        "value": 295.6946944
+      },
+      {
+        "name": "Reactor length [m]",
+        "value": 16.03217037
+      },
+      {
+        "name": "Reactor L/D ratio",
+        "value": 8.367951156
+      },
+      {
+        "name": "Power working fluid",
+        "value": "cyclopentane"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": 58.54357593
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 1.953511281
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]",
+        "value": 36.13753565
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "H2/CO2 mole ratio",
+        "value": ""
+      },
+      {
+        "name": "Reactor Temperature [C]"
+      },
+      {
+        "name": "Reactor length [m]"
+      },
+      {
+        "name": "Reactor L/D ratio"
+      },
+      {
+        "name": "Power working fluid"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Storage efficiency [LHV/Electricity]",
+        "value": ""
+      },
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]"
+      },
+      {
+        "name": "Levelized cost of SNG [€/Nm3]"
+      }
+    ]
+  }
+]

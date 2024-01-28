@@ -1,0 +1,1391 @@
+[
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 894.740079
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.154489453
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 225.1899603
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 1284.904897
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.271659278
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.01205439
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -310.3130095
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 893.3913927
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.13673132
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 245.066247
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 1401.522552
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.266921915
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.01113475
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -304.8263393
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 893.3913927
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.12205943
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 245.066247
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 1401.522552
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.266921915
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.010223192
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -303.6304864
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 899.9780039
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.112447361
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 203.9911041
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 1937.518063
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.220623903
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.00913355
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -298.6242784
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 882.3434554
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.110414323
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 210.2341421
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 1117.298448
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.268306304
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.009126411
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -297.2574413
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 893.2487955
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.190648509
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 204.7158922
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 1987.333667
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.404840115
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.008952632
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -281.1049574
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 899.9780039
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.112447361
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 242.8591777
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 2233.670464
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.220623903
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.006569533
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -281.0915264
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 899.9780039
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.112447361
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 242.5401607
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 2233.670464
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.220623903
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.0065692
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -281.090793
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 899.9780039
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.112447361
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 242.5401607
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 2233.670464
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.220623903
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.006567995
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -281.0839146
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 896.670479
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.112433605
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 245.9999982
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 2231.433342
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.221407042
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.006527345
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -277.482977
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 895.2174119
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.112447361
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 242.5401607
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 2232.369521
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.220623903
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.0064551
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -276.0509575
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 895.2174119
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.112447361
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 240.1155154
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 2238.154433
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.220623903
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.006399623
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -275.7139079
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 894.6401472
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.136705487
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 204.9329624
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 2279.365156
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.276548359
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.006341284
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -272.014705
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 862.1700602
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.144761575
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 216.6583818
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 1321.18099
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.425784291
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.005879266
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -254.2464739
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 854.1394397
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.116856052
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 205.7137472
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 1182.746832
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.431491614
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.003928331
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -245.0639654
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 854.1394397
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.116856052
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 205.5520875
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 1182.746832
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.439013212
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.003774489
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -243.8787713
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 892.447271
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.129447261
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 248.1684464
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 2944.347893
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.254667054
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.003533555
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -200.5327136
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 895.3444519
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.135277835
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 227.506939
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 3299.800223
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.270242716
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.00191402
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -168.2092887
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 895.3444519
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.134869138
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 227.2694231
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 3429.646331
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.270397533
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.001414038
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -155.1432679
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 899.8559392
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.112115514
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 238.5064437
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 3529.447772
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.219515076
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.00024803
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -148.6673764
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 899.8559392
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.112115514
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 240.9544849
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 3531.22579
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.226071798
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.000215909
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -148.2320594
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 897.6972095
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.112115514
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 240.9544849
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 3531.22579
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.226071798
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": -0.000146524
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -145.8616301
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 896.1058766
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.1293046
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 225.9190878
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 3729.870731
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.271659278
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.000118405
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -127.3634652
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 893.2281047
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.190648509
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 240.2226191
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5490.732077
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.411573081
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.000137881
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": -3.718335871
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 882.2049694
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.190648509
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 222.8834746
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5473.921606
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.425445198
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.00121358
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 6.112977801
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 892.7709625
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.122086126
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 245.066247
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5823.56046
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.266921915
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.004540424
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 19.16164207
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 871.3326438
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.141119233
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 239.9401469
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5566.383184
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.411940296
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.00528618
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 26.59944079
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 871.7761408
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.137417167
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 242.2331095
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5664.345803
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.475469463
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.006528213
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 30.40530475
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 867.9313156
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.110515731
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 238.7447581
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5675.142501
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.382444824
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.007779116
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 37.03820106
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 854.201343
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.118414115
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 247.7539449
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5579.892584
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.475469463
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.008236027
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 46.26637109
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 858.5603441
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.083302312
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 238.735854
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5915.900319
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.381083352
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.010540391
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 59.70031031
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 852.9095176
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.08334092
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 204.9937693
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5915.900319
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.381083352
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.011669481
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 62.175898
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 852.9095176
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.07962275
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 205.7074734
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5915.900319
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.386181418
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.01196303
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 62.39186466
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 827.8595388
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.034686484
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 205.9328238
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5918.434427
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.44703104
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.016567575
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 86.64259591
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 827.7671308
+      },
+      {
+        "name": "Steam ratio",
+        "value": 1.034686484
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 205.9328238
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5918.434427
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.44703104
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.01658056
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 86.80845216
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 803.2992717
+      },
+      {
+        "name": "Steam ratio",
+        "value": 0.927740198
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 221.64646
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5933.077763
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.42482196
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.024023129
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 107.4086783
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 804.1317872
+      },
+      {
+        "name": "Steam ratio",
+        "value": 0.927626391
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 221.64646
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5950.976882
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.426457728
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.024078603
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 107.5743809
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 804.1317872
+      },
+      {
+        "name": "Steam ratio",
+        "value": 0.927626391
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 216.5558657
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5965.378088
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.425784883
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.024233784
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 107.7674118
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 803.2992717
+      },
+      {
+        "name": "Steam ratio",
+        "value": 0.927740198
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 206.1301977
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5985.081816
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.42482196
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.024530015
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 108.3397144
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": 716.5898764
+      },
+      {
+        "name": "Steam ratio",
+        "value": 0.669740222
+      },
+      {
+        "name": "FT temperature [C]",
+        "value": 248.4771052
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]",
+        "value": 5973.961249
+      },
+      {
+        "name": "H2/CO ratio",
+        "value": 2.486694669
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": 0.039224905
+      },
+      {
+        "name": "Net Present Value [M€]",
+        "value": 123.05372
+      }
+    ]
+  },
+  {
+    "decisionVariables": [
+      {
+        "name": "Gasification temperature [C]",
+        "value": ""
+      },
+      {
+        "name": "Steam ratio"
+      },
+      {
+        "name": "FT temperature [C]"
+      },
+      {
+        "name": "GHSV [cm3/h/g_cat]"
+      },
+      {
+        "name": "H2/CO ratio"
+      }
+    ],
+    "objectives": [
+      {
+        "name": "Climate change [kg CO2-eq./Nm3]",
+        "value": ""
+      },
+      {
+        "name": "Net Present Value [M€]"
+      }
+    ]
+  }
+]
