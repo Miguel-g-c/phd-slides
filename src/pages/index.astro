@@ -3,6 +3,12 @@ import CodeBlock from "../components/CodeBlock.astro";
 import Slide from "../components/Slide.astro";
 import SpeakerNote from "../components/SpeakerNote.astro";
 import Layout from "../layouts/Layout.astro";
+
+import { getEntry } from "astro:content";
+
+const moop2FromCase2 = await getEntry("moops", "case1/moop2");
+const test = moop2FromCase2.data.decisionVariables.names[0];
+console.log(test);
 ---
 
 <Layout
