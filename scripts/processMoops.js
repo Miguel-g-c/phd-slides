@@ -14,31 +14,43 @@ function clearDirectory(directory) {
 function parseCsv(csvData) {
   const lines = csvData.replace(/\r\n/g, "\n").replace(/\r/g, "\n").split("\n");
   const headers = lines[0].split(",").map((header) => header.trim());
-  return lines.slice(1).map((line) => {
-    const values = line.split(",").map((value) => {
-      value = value.trim();
-      return isNaN(value) || value === "" ? value : parseFloat(value);
+  return lines
+    .slice(1)
+    .filter((line) => line.trim() !== "") // Skip empty lines
+    .map((line) => {
+      const values = line.split(",").map((value) => {
+        value = value.trim();
+        return isNaN(value) || value === "" ? value : parseFloat(value);
+      });
+      return headers.reduce((obj, header, index) => {
+        obj[header] = values[index];
+        return obj;
+      }, {});
     });
-    return headers.reduce((obj, header, index) => {
-      obj[header] = values[index];
-      return obj;
-    }, {});
-  });
 }
 
 function convertToMoopRecord(decisionVariables, objectives) {
-  return decisionVariables.map((decisionRow, index) => {
-    return {
-      decisionVariables: Object.keys(decisionRow).map((key) => ({
-        name: key,
-        value: decisionRow[key],
-      })),
-      objectives: Object.keys(objectives[index]).map((key) => ({
-        name: key,
-        value: objectives[index][key],
-      })),
-    };
-  });
+  // Extracting names and values for decision variables and objectives
+  const decisionVariableNames = Object.keys(decisionVariables[0]);
+  const decisionVariableValues = decisionVariables.map((row) =>
+    decisionVariableNames.map((name) => row[name]),
+  );
+
+  const objectiveNames = Object.keys(objectives[0]);
+  const objectiveValues = objectives.map((row) =>
+    objectiveNames.map((name) => row[name]),
+  );
+
+  return {
+    decisionVariables: {
+      names: decisionVariableNames,
+      values: decisionVariableValues,
+    },
+    objectives: {
+      names: objectiveNames,
+      values: objectiveValues,
+    },
+  };
 }
 
 function readCsvFile(filePath) {
@@ -89,7 +101,7 @@ async function processAllMoops(baseDirectory, outputDirectory) {
 
         // Save the parsed data to a JSON file
         fs.mkdirSync(path.dirname(outputFilePath), { recursive: true });
-        fs.writeFileSync(outputFilePath, JSON.stringify(moopRecords, null, 2));
+        fs.writeFileSync(outputFilePath, JSON.stringify(moopRecords));
         console.log(`JSON data has been saved to ${outputFilePath}`);
       } catch (error) {
         console.error(
