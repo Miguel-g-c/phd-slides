@@ -29,25 +29,53 @@ function parseCsv(csvData) {
     });
 }
 
+function getNameAndUnit(fullName) {
+  let name = fullName;
+  let unit = "";
+  if (name.includes("[")) {
+    name = name.split("[")[0].trim();
+    unit = fullName.split("[")[1].split("]")[0];
+  }
+  return [name, unit];
+}
+
+function getNamesAndUnits(fullNames) {
+  return fullNames.reduce(
+    (acc, fullName) => {
+      const [name, unit] = getNameAndUnit(fullName);
+      acc[0].push(name);
+      acc[1].push(unit);
+      return acc;
+    },
+    [[], []],
+  );
+}
+
 function convertToMoopRecord(decisionVariables, objectives) {
   // Extracting names and values for decision variables and objectives
-  const decisionVariableNames = Object.keys(decisionVariables[0]);
+  const decisionVariableFullNames = Object.keys(decisionVariables[0]);
+  const [decisionVariableNames, decisionVariableUnits] = getNamesAndUnits(
+    decisionVariableFullNames,
+  );
   const decisionVariableValues = decisionVariables.map((row) =>
-    decisionVariableNames.map((name) => row[name]),
+    decisionVariableFullNames.map((name) => row[name]),
   );
 
-  const objectiveNames = Object.keys(objectives[0]);
+  const objectiveFullNames = Object.keys(objectives[0]);
+  const [objectiveNames, objectiveUnits] = getNamesAndUnits(objectiveFullNames);
   const objectiveValues = objectives.map((row) =>
-    objectiveNames.map((name) => row[name]),
+    objectiveFullNames.map((name) => row[name]),
   );
 
   return {
     decisionVariables: {
       names: decisionVariableNames,
+      units: decisionVariableUnits,
       values: decisionVariableValues,
     },
     objectives: {
       names: objectiveNames,
+      units: objectiveUnits,
       values: objectiveValues,
     },
   };
