@@ -1,4 +1,4 @@
-Gasification temperature [C],Steam ratio,FT temperature [C],GHSV [cm3/h/g_cat],H2/CO ratio
+Gasification temperature [°C],Steam ratio,FT temperature [°C],GHSV [cm<sup>3</sup>/h/g<sub>cat</sub>],H<sub>2</sub>/CO ratio
 897.0496881,0.84683661,241.4349405,1587.045941,2.011518474
 821.278375,0.150076139,235.9251047,1189.621573,1.666518543
 895.7811387,1.331893764,200.3811841,1014.479557,2.488855093
