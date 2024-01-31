@@ -38,7 +38,7 @@ const {
 ---
 
 <div class="flex flex-col items-center">
-  <div id={id} class="size-fit"></div>
+  <div id={id} class="size-fit rounded-xl overflow-hidden"></div>
 </div>
 
 <script
@@ -87,41 +87,55 @@ const {
       lightposition: { x: 80000, y: 100000, z: 0 },
       vertexcolor: vertexColors,
     },
+    {
+      // Only show the points that are in the annotations indeces
+      x: x_values.filter((_, i) => annotations.map((a) => a.index).includes(i)),
+      y: y_values.filter((_, i) => annotations.map((a) => a.index).includes(i)),
+      z: z_values.filter((_, i) => annotations.map((a) => a.index).includes(i)),
+      type: "scatter3d",
+      mode: "markers",
+      marker: {
+        size: 3.2,
+        color: "#7666f3",
+        opacity: 0.9,
+        line: { width: 1, color: "#d6deeb" },
+      },
+    },
   ];
 
   const layout = {
     autosize: true,
     margin: { l: 0, r: 0, b: 0, t: 0 },
-    paper_bgcolor: "rgba(0,0,0,0)",
-    plot_bgcolor: "rgba(0,0,0,0)",
+    paper_bgcolor: "#011627",
+    plot_bgcolor: "#011627",
     hoverlabel: {
-      bgcolor: "#443a61",
-      font: { size: 10, color: "#ebedff" },
-      bordercolor: "#ebedff",
+      bgcolor: "#424a78",
+      font: { size: 10, color: "#d6deeb" },
+      bordercolor: "#d6deeb",
     },
     scene: {
       aspectmode: "manual",
       aspectratio: { x: 1, y: 1, z: 0.9 },
       xaxis: {
         title: `${x_name} (${x_unit})`,
-        titlefont: { color: "#ebedff", size: 12 },
-        tickfont: { color: "#ebedff", size: 11 },
-        gridcolor: "#636363",
-        spikecolor: "#7cd7d9",
+        titlefont: { color: "#d6deeb", size: 12 },
+        tickfont: { color: "#d6deeb", size: 11 },
+        gridcolor: "#637777",
+        spikecolor: "#80CBC4",
       },
       yaxis: {
         title: `${y_name} (${y_unit})`,
-        titlefont: { color: "#ebedff", size: 12 },
-        tickfont: { color: "#ebedff", size: 11 },
-        gridcolor: "#636363",
-        spikecolor: "#7cd7d9",
+        titlefont: { color: "#d6deeb", size: 12 },
+        tickfont: { color: "#d6deeb", size: 11 },
+        gridcolor: "#637777",
+        spikecolor: "#80CBC4",
       },
       zaxis: {
         title: `${z_name} (${z_unit})`,
-        titlefont: { color: "#ebedff", size: 12 },
-        tickfont: { color: "#ebedff", size: 11 },
-        gridcolor: "#636363",
-        spikecolor: "#7cd7d9",
+        titlefont: { color: "#d6deeb", size: 12 },
+        tickfont: { color: "#d6deeb", size: 11 },
+        gridcolor: "#637777",
+        spikecolor: "#80CBC4",
       },
       camera: {
         center: { x: 0, y: 0, z: -0.2 },
@@ -151,8 +165,8 @@ const {
       `${renderDecisionVariables(pos)}` +
       "<br><b>Objectives</b><br>" +
       `${x_name}: %{x:.04f} ${x_unit}<br>` +
-      `${y_name}: %{z:.04f} ${y_unit}<br>` +
-      `${z_name}: %{y:.04f} ${z_unit}<br>` +
+      `${y_name}: %{y:.04f} ${y_unit}<br>` +
+      `${z_name}: %{z:.04f} ${z_unit}<br>` +
       "<extra></extra>";
   });
 
@@ -170,15 +184,15 @@ const {
 
   function getYlGnBuColor(value) {
     const colors = [
-      { stop: 0, color: "rgb(255,255,217)" },
-      { stop: 0.125, color: "rgb(237,248,217)" },
-      { stop: 0.25, color: "rgb(199,233,180)" },
-      { stop: 0.375, color: "rgb(127,205,187)" },
+      { stop: 0, color: "rgb(8, 64, 129)" },
+      { stop: 0.125, color: "rgb(38, 77, 159)" },
+      { stop: 0.25, color: "rgb(34,94,168)" },
+      { stop: 0.375, color: "rgb(29,145,192)" },
       { stop: 0.5, color: "rgb(65,182,196)" },
-      { stop: 0.625, color: "rgb(29,145,192)" },
-      { stop: 0.75, color: "rgb(34,94,168)" },
-      { stop: 0.875, color: "rgb(37,52,148)" },
-      { stop: 1, color: "rgb(8,29,88)" },
+      { stop: 0.625, color: "rgb(127,205,187)" },
+      { stop: 0.75, color: "rgb(199,233,180)" },
+      { stop: 0.875, color: "rgb(237,248,217)" },
+      { stop: 1, color: "rgb(255,255,217)" },
     ];
 
     for (let i = 0; i < colors.length - 1; i++) {
@@ -201,11 +215,10 @@ const {
         textangle: 0,
         ax: 0,
         ay: -50,
-        font: { color: "#9a5dfc", size: 12 },
-        arrowcolor: "#6a14f5",
-        arrowsize: 2,
-        arrowwidth: 1,
-        arrowhead: 1,
+        font: { color: "#d6deeb", size: 11 },
+        arrowcolor: "#d6deeb",
+        arrowwidth: 0.6,
+        arrowhead: 0,
       };
       annotationsConfig.push(annotation);
     }
