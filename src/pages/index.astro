@@ -3,11 +3,13 @@ import CodeBlock from "../components/CodeBlock.astro";
 import Slide from "../components/Slide.astro";
 import SpeakerNote from "../components/SpeakerNote.astro";
 import ThreeParetoFront from "../components/ThreeParetoFront.astro";
+import TwoParetoFront from "../components/TwoParetoFront.astro";
 import Layout from "../layouts/Layout.astro";
 
 import { getEntry } from "astro:content";
 
-const moop = await getEntry("moops", "case2/moop2");
+const moop2 = await getEntry("moops", "case2/moop1");
+const moop3 = await getEntry("moops", "case2/moop2");
 ---
 
 <Layout
@@ -34,9 +36,9 @@ const moop = await getEntry("moops", "case2/moop2");
   </Slide>
   <Slide>
     <ThreeParetoFront
-      id={moop.id}
-      objectives={moop.data.objectives}
-      decisionVariables={moop.data.decisionVariables}
+      id={moop3.id}
+      objectives={moop3.data.objectives}
+      decisionVariables={moop3.data.decisionVariables}
       x_index={0}
       y_index={2}
       z_index={1}
@@ -45,6 +47,14 @@ const moop = await getEntry("moops", "case2/moop2");
         { name: "Scenario 1", index: 50 },
         { name: "Scenario 2", index: 100 },
       ]}
+    />
+  </Slide>
+
+  <Slide>
+    <TwoParetoFront
+      id={moop2.id}
+      objectives={moop2.data.objectives}
+      decisionVariables={moop2.data.decisionVariables}
     />
   </Slide>
 </Layout>
