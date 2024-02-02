@@ -28,101 +28,123 @@ const {
 } = Astro.props;
 ---
 
-<div class="flex flex-col items-center">
-  <div id={id} class="size-fit rounded-xl overflow-hidden"></div>
-</div>
-
-<script
-  define:vars={{
-    id,
-    objectives,
-    decisionVariables,
-    x_index,
-    y_index,
-  }}
+<two-pareto-front
+  class="flex flex-col items-center"
+  data-objectives={JSON.stringify(objectives)}
+  data-decision-variables={JSON.stringify(decisionVariables)}
+  data-x-index={x_index}
+  data-y-index={y_index}
 >
-  const x_name = objectives.names[x_index];
-  const y_name = objectives.names[y_index];
+  <div id={id} class="size-fit rounded-xl overflow-hidden"></div>
+</two-pareto-front>
 
-  const x_unit = objectives.units[x_index];
-  const y_unit = objectives.units[y_index];
+<script>
+  import Plotly from "plotly.js-dist";
+  class TwoParetoFront extends HTMLElement {
+    objectives: any;
+    decisionVariables: any;
+    x_index: number;
+    y_index: number;
+    graph: Plotly.PlotlyHTMLElement;
 
-  const x_values = objectives.values.map((row) => row[x_index]);
-  const y_values = objectives.values.map((row) => row[y_index]);
+    constructor() {
+      super();
 
-  const plotData = [
-    {
-      x: x_values,
-      y: y_values,
-      mode: "lines+markers",
-      marker: { color: "#addb67", size: 6 },
-      line: { color: "#addb67", width: 2, shape: "hv" },
-      opacity: 0.9,
-      type: "scatter",
-    },
-  ];
-
-  const layout = {
-    margin: { l: 60, r: 20, b: 60, t: 20 },
-    paper_bgcolor: "#011627",
-    plot_bgcolor: "#011627",
-    hoverlabel: {
-      bgcolor: "#424a78",
-      font: { size: 10, color: "#d6deeb" },
-      bordercolor: "#d6deeb",
-    },
-    xaxis: {
-      title: `${x_name} (${x_unit})`,
-      titlefont: { color: "#d6deeb", size: 12 },
-      tickfont: { color: "#d6deeb", size: 11 },
-      zerolinecolor: "#637777",
-      spikethickness: 0.5,
-      spikecolor: "#80CBC4",
-      gridcolor: "#0d2336",
-    },
-    yaxis: {
-      title: `${y_name} (${y_unit})`,
-      titlefont: { color: "#d6deeb", size: 12 },
-      tickfont: { color: "#d6deeb", size: 11 },
-      zerolinecolor: "#637777",
-      spikethickness: 0.5,
-      gridcolor: "#0d2336",
-      spikecolor: "#80CBC4",
-    },
-  };
-
-  const config = {
-    displaylogo: false,
-    displayModeBar: false,
-    responsive: true,
-  };
-
-  Plotly.newPlot(id, plotData, layout, config);
-
-  graph = document.getElementById(id);
-
-  graph.on("plotly_hover", function (data) {
-    let x = data.points[0].x;
-    let pos = x_values.indexOf(x);
-
-    data.points[0].fullData.hovertemplate =
-      "<b>Decision variables</b><br>" +
-      `${renderDecisionVariables(pos)}` +
-      "<br><b>Objectives</b><br>" +
-      `${x_name}: %{x:.04f} ${x_unit}<br>` +
-      `${y_name}: %{y:.04f} ${y_unit}<br>` +
-      "<extra></extra>";
-  });
-
-  function renderDecisionVariables(pos) {
-    let str = "";
-    for (let i = 0; i < decisionVariables.names.length; i++) {
-      var name = decisionVariables.names[i];
-      var unit = decisionVariables.units[i];
-      var value = decisionVariables.values[pos][i];
-      value = isNaN(value) ? value : value.toFixed(4);
-      str += `${name}: ${value} ${unit}<br>`;
+      this.objectives = JSON.parse(this.dataset.objectives ?? "{}");
+      this.decisionVariables = JSON.parse(
+        this.dataset.decisionVariables ?? "{}",
+      );
+      this.x_index = parseInt(this.dataset.xIndex ?? "0");
+      this.y_index = parseInt(this.dataset.yIndex ?? "1");
+      this.graph = this.querySelector("div")!;
+      this.render();
     }
-    return str;
+
+    render() {
+      const x_name = this.objectives.names[this.x_index];
+      const y_name = this.objectives.names[this.y_index];
+
+      const x_unit = this.objectives.units[this.x_index];
+      const y_unit = this.objectives.units[this.y_index];
+
+      const x_values = this.objectives.values.map((row) => row[this.x_index]);
+      const y_values = this.objectives.values.map((row) => row[this.y_index]);
+
+      const plotData = [
+        {
+          x: x_values,
+          y: y_values,
+          mode: "lines+markers",
+          marker: { color: "#addb67", size: 6 },
+          line: { color: "#addb67", width: 2, shape: "hv" },
+          opacity: 0.9,
+          type: "scatter",
+        },
+      ];
+
+      const layout = {
+        margin: { l: 60, r: 20, b: 60, t: 20 },
+        paper_bgcolor: "#011627",
+        plot_bgcolor: "#011627",
+        hoverlabel: {
+          bgcolor: "#424a78",
+          font: { size: 10, color: "#d6deeb" },
+          bordercolor: "#d6deeb",
+        },
+        xaxis: {
+          title: `${x_name} (${x_unit})`,
+          titlefont: { color: "#d6deeb", size: 12 },
+          tickfont: { color: "#d6deeb", size: 11 },
+          zerolinecolor: "#637777",
+          spikethickness: 0.5,
+          spikecolor: "#80CBC4",
+          gridcolor: "#0d2336",
+        },
+        yaxis: {
+          title: `${y_name} (${y_unit})`,
+          titlefont: { color: "#d6deeb", size: 12 },
+          tickfont: { color: "#d6deeb", size: 11 },
+          zerolinecolor: "#637777",
+          spikethickness: 0.5,
+          gridcolor: "#0d2336",
+          spikecolor: "#80CBC4",
+        },
+      };
+
+      const config = {
+        displaylogo: false,
+        displayModeBar: false,
+        responsive: true,
+      };
+
+      Plotly.newPlot(this.graph.id, plotData, layout, config);
+
+      this.graph.on("plotly_hover", (data) => {
+        let x = data.points[0].x;
+        let pos = x_values.indexOf(x);
+
+        data.points[0].fullData.hovertemplate =
+          "<b>Decision variables</b><br>" +
+          `${this.renderDecisionVariables(pos)}` +
+          "<br><b>Objectives</b><br>" +
+          `${x_name}: %{x:.04f} ${x_unit}<br>` +
+          `${y_name}: %{y:.04f} ${y_unit}<br>` +
+          "<extra></extra>";
+      });
+    }
+
+    renderDecisionVariables(pos) {
+      let str = "";
+      for (let i = 0; i < this.decisionVariables.names.length; i++) {
+        var name = this.decisionVariables.names[i];
+        var unit = this.decisionVariables.units[i];
+        var value = this.decisionVariables.values[pos][i];
+        value = isNaN(value) ? value : value.toFixed(4);
+        str += `${name}: ${value} ${unit}<br>`;
+      }
+      return str;
+    }
   }
+
+  customElements.define("two-pareto-front", TwoParetoFront);
 </script>

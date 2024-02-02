@@ -37,191 +37,223 @@ const {
 } = Astro.props;
 ---
 
-<div class="flex flex-col items-center">
-  <div id={id} class="size-fit rounded-xl overflow-hidden"></div>
-</div>
-
-<script
-  define:vars={{
-    id,
-    objectives,
-    decisionVariables,
-    x_index,
-    y_index,
-    z_index,
-    annotations,
-  }}
+<three-pareto-front
+  class="flex flex-col items-center"
+  data-objectives={JSON.stringify(objectives)}
+  data-decision-variables={JSON.stringify(decisionVariables)}
+  data-x-index={x_index}
+  data-y-index={y_index}
+  data-z-index={z_index}
+  data-annotations={JSON.stringify(annotations)}
 >
-  const x_name = objectives.names[x_index];
-  const y_name = objectives.names[y_index];
-  const z_name = objectives.names[z_index];
+  <div id={id} class="size-fit rounded-xl overflow-hidden"></div>
+</three-pareto-front>
 
-  const x_unit = objectives.units[x_index];
-  const y_unit = objectives.units[y_index];
-  const z_unit = objectives.units[z_index];
+<script>
+  import Plotly from "plotly.js-dist";
+  class ThreeParetoFront extends HTMLElement {
+    objectives: any;
+    decisionVariables: any;
+    x_index: number;
+    y_index: number;
+    z_index: number;
+    annotations: any;
+    graph: Plotly.PlotlyHTMLElement;
 
-  const x_values = objectives.values.map((row) => row[x_index]);
-  const y_values = objectives.values.map((row) => row[y_index]);
-  const z_values = objectives.values.map((row) => row[z_index]);
+    constructor() {
+      super();
 
-  const zMin = Math.min(...z_values);
-  const zMax = Math.max(...z_values);
-  const normalizedZ = z_values.map((z) => (z - zMin) / (zMax - zMin));
-  const vertexColors = normalizedZ.map((z) => getYlGnBuColor(z));
-
-  const plotData = [
-    {
-      x: x_values,
-      y: y_values,
-      z: z_values,
-      type: "mesh3d",
-      opacity: 0.8,
-      flatshading: false,
-      lighting: {
-        ambient: 0.6,
-        diffuse: 0.9,
-        fresnel: 1,
-        specular: 0.5,
-        roughness: 0.5,
-      },
-      lightposition: { x: 80000, y: 100000, z: 0 },
-      vertexcolor: vertexColors,
-    },
-    {
-      // Only show the points that are in the annotations indeces
-      x: x_values.filter((_, i) => annotations.map((a) => a.index).includes(i)),
-      y: y_values.filter((_, i) => annotations.map((a) => a.index).includes(i)),
-      z: z_values.filter((_, i) => annotations.map((a) => a.index).includes(i)),
-      type: "scatter3d",
-      mode: "markers",
-      marker: {
-        size: 3.2,
-        color: "#7666f3",
-        opacity: 0.9,
-        line: { width: 1, color: "#d6deeb" },
-      },
-    },
-  ];
-
-  const layout = {
-    autosize: true,
-    margin: { l: 0, r: 0, b: 0, t: 0 },
-    paper_bgcolor: "#011627",
-    plot_bgcolor: "#011627",
-    hoverlabel: {
-      bgcolor: "#424a78",
-      font: { size: 10, color: "#d6deeb" },
-      bordercolor: "#d6deeb",
-    },
-    scene: {
-      aspectmode: "manual",
-      aspectratio: { x: 1, y: 1, z: 0.9 },
-      xaxis: {
-        title: `${x_name} (${x_unit})`,
-        titlefont: { color: "#d6deeb", size: 12 },
-        tickfont: { color: "#d6deeb", size: 11 },
-        gridcolor: "#637777",
-        spikecolor: "#80CBC4",
-      },
-      yaxis: {
-        title: `${y_name} (${y_unit})`,
-        titlefont: { color: "#d6deeb", size: 12 },
-        tickfont: { color: "#d6deeb", size: 11 },
-        gridcolor: "#637777",
-        spikecolor: "#80CBC4",
-      },
-      zaxis: {
-        title: `${z_name} (${z_unit})`,
-        titlefont: { color: "#d6deeb", size: 12 },
-        tickfont: { color: "#d6deeb", size: 11 },
-        gridcolor: "#637777",
-        spikecolor: "#80CBC4",
-      },
-      camera: {
-        center: { x: 0, y: 0, z: -0.2 },
-        eye: { x: -1.5, y: 1.5, z: 0.5 },
-        up: { x: 0, y: 0, z: 1 },
-      },
-      annotations: addAnnotations(),
-    },
-  };
-
-  const config = {
-    displaylogo: false,
-    displayModeBar: false,
-    responsive: true,
-  };
-
-  Plotly.newPlot(id, plotData, layout, config);
-
-  graph = document.getElementById(id);
-
-  graph.on("plotly_hover", function (data) {
-    let x = data.points[0].x;
-    let pos = x_values.indexOf(x);
-
-    data.points[0].fullData.hovertemplate =
-      "<b>Decision variables</b><br>" +
-      `${renderDecisionVariables(pos)}` +
-      "<br><b>Objectives</b><br>" +
-      `${x_name}: %{x:.04f} ${x_unit}<br>` +
-      `${y_name}: %{y:.04f} ${y_unit}<br>` +
-      `${z_name}: %{z:.04f} ${z_unit}<br>` +
-      "<extra></extra>";
-  });
-
-  function renderDecisionVariables(pos) {
-    let str = "";
-    for (let i = 0; i < decisionVariables.names.length; i++) {
-      var name = decisionVariables.names[i];
-      var unit = decisionVariables.units[i];
-      var value = decisionVariables.values[pos][i];
-      value = isNaN(value) ? value : value.toFixed(4);
-      str += `${name}: ${value} ${unit}<br>`;
-    }
-    return str;
-  }
-
-  function getYlGnBuColor(value) {
-    const colors = [
-      { stop: 0, color: "rgb(8, 64, 129)" },
-      { stop: 0.125, color: "rgb(38, 77, 159)" },
-      { stop: 0.25, color: "rgb(34,94,168)" },
-      { stop: 0.375, color: "rgb(29,145,192)" },
-      { stop: 0.5, color: "rgb(65,182,196)" },
-      { stop: 0.625, color: "rgb(127,205,187)" },
-      { stop: 0.75, color: "rgb(199,233,180)" },
-      { stop: 0.875, color: "rgb(237,248,217)" },
-      { stop: 1, color: "rgb(255,255,217)" },
-    ];
-
-    for (let i = 0; i < colors.length - 1; i++) {
-      if (value >= colors[i].stop && value <= colors[i + 1].stop) {
-        return colors[i].color;
-      }
+      this.objectives = JSON.parse(this.dataset.objectives ?? "{}");
+      this.decisionVariables = JSON.parse(
+        this.dataset.decisionVariables ?? "{}",
+      );
+      this.x_index = parseInt(this.dataset.xIndex ?? "0");
+      this.y_index = parseInt(this.dataset.yIndex ?? "1");
+      this.z_index = parseInt(this.dataset.zIndex ?? "2");
+      this.annotations = JSON.parse(this.dataset.annotations ?? "[]");
+      this.graph = this.querySelector("div")!;
+      this.render();
     }
 
-    return colors[colors.length - 1].color;
-  }
+    render() {
+      const x_name = this.objectives.names[this.x_index];
+      const y_name = this.objectives.names[this.y_index];
+      const z_name = this.objectives.names[this.z_index];
 
-  function addAnnotations() {
-    var annotationsConfig = [];
-    for (let ann of annotations) {
-      let annotation = {
-        x: x_values[ann.index],
-        y: y_values[ann.index],
-        z: z_values[ann.index],
-        text: ann.name,
-        textangle: 0,
-        ax: 0,
-        ay: -50,
-        font: { color: "#d6deeb", size: 11 },
-        arrowcolor: "#d6deeb",
-        arrowwidth: 0.6,
-        arrowhead: 0,
+      const x_unit = this.objectives.units[this.x_index];
+      const y_unit = this.objectives.units[this.y_index];
+      const z_unit = this.objectives.units[this.z_index];
+
+      const x_values = this.objectives.values.map((row) => row[this.x_index]);
+      const y_values = this.objectives.values.map((row) => row[this.y_index]);
+      const z_values = this.objectives.values.map((row) => row[this.z_index]);
+
+      const zMin = Math.min(...z_values);
+      const zMax = Math.max(...z_values);
+      const normalizedZ = z_values.map((z) => (z - zMin) / (zMax - zMin));
+      const vertexColors = normalizedZ.map((z) => this.getYlGnBuColor(z));
+
+      const plotData = [
+        {
+          x: x_values,
+          y: y_values,
+          z: z_values,
+          type: "mesh3d",
+          opacity: 0.8,
+          flatshading: false,
+          lighting: {
+            ambient: 0.6,
+            diffuse: 0.9,
+            fresnel: 1,
+            specular: 0.5,
+            roughness: 0.5,
+          },
+          lightposition: { x: 80000, y: 100000, z: 0 },
+          vertexcolor: vertexColors,
+        },
+        {
+          // Only show the points that are in the annotations indeces
+          x: x_values.filter((_, i) =>
+            this.annotations.map((a) => a.index).includes(i),
+          ),
+          y: y_values.filter((_, i) =>
+            this.annotations.map((a) => a.index).includes(i),
+          ),
+          z: z_values.filter((_, i) =>
+            this.annotations.map((a) => a.index).includes(i),
+          ),
+          type: "scatter3d",
+          mode: "markers",
+          marker: {
+            size: 3.2,
+            color: "#7666f3",
+            opacity: 0.9,
+            line: { width: 1, color: "#d6deeb" },
+          },
+        },
+      ];
+
+      const layout = {
+        autosize: true,
+        margin: { l: 0, r: 0, b: 0, t: 0 },
+        paper_bgcolor: "#011627",
+        plot_bgcolor: "#011627",
+        hoverlabel: {
+          bgcolor: "#424a78",
+          font: { size: 10, color: "#d6deeb" },
+          bordercolor: "#d6deeb",
+        },
+        scene: {
+          aspectmode: "manual",
+          aspectratio: { x: 1, y: 1, z: 0.9 },
+          xaxis: {
+            title: `${x_name} (${x_unit})`,
+            titlefont: { color: "#d6deeb", size: 12 },
+            tickfont: { color: "#d6deeb", size: 11 },
+            gridcolor: "#637777",
+            spikecolor: "#80CBC4",
+          },
+          yaxis: {
+            title: `${y_name} (${y_unit})`,
+            titlefont: { color: "#d6deeb", size: 12 },
+            tickfont: { color: "#d6deeb", size: 11 },
+            gridcolor: "#637777",
+            spikecolor: "#80CBC4",
+          },
+          zaxis: {
+            title: `${z_name} (${z_unit})`,
+            titlefont: { color: "#d6deeb", size: 12 },
+            tickfont: { color: "#d6deeb", size: 11 },
+            gridcolor: "#637777",
+            spikecolor: "#80CBC4",
+          },
+          camera: {
+            center: { x: 0, y: 0, z: -0.2 },
+            eye: { x: -1.5, y: 1.5, z: 0.5 },
+            up: { x: 0, y: 0, z: 1 },
+          },
+          annotations: this.addAnnotations(x_values, y_values, z_values),
+        },
       };
-      annotationsConfig.push(annotation);
+
+      const config = {
+        displaylogo: false,
+        displayModeBar: false,
+        responsive: true,
+      };
+
+      Plotly.newPlot(this.graph.id, plotData, layout, config);
+
+      this.graph.on("plotly_hover", (data) => {
+        let x = data.points[0].x;
+        let pos = x_values.indexOf(x);
+
+        data.points[0].fullData.hovertemplate =
+          "<b>Decision variables</b><br>" +
+          `${this.renderDecisionVariables(pos)}` +
+          "<br><b>Objectives</b><br>" +
+          `${x_name}: %{x:.04f} ${x_unit}<br>` +
+          `${y_name}: %{y:.04f} ${y_unit}<br>` +
+          `${z_name}: %{z:.04f} ${z_unit}<br>` +
+          "<extra></extra>";
+      });
     }
-    return annotationsConfig;
+
+    renderDecisionVariables(pos) {
+      let str = "";
+      for (let i = 0; i < this.decisionVariables.names.length; i++) {
+        var name = this.decisionVariables.names[i];
+        var unit = this.decisionVariables.units[i];
+        var value = this.decisionVariables.values[pos][i];
+        value = isNaN(value) ? value : value.toFixed(4);
+        str += `${name}: ${value} ${unit}<br>`;
+      }
+      return str;
+    }
+
+    getYlGnBuColor(value) {
+      const colors = [
+        { stop: 0, color: "rgb(8, 64, 129)" },
+        { stop: 0.125, color: "rgb(38, 77, 159)" },
+        { stop: 0.25, color: "rgb(34,94,168)" },
+        { stop: 0.375, color: "rgb(29,145,192)" },
+        { stop: 0.5, color: "rgb(65,182,196)" },
+        { stop: 0.625, color: "rgb(127,205,187)" },
+        { stop: 0.75, color: "rgb(199,233,180)" },
+        { stop: 0.875, color: "rgb(237,248,217)" },
+        { stop: 1, color: "rgb(255,255,217)" },
+      ];
+
+      for (let i = 0; i < colors.length - 1; i++) {
+        if (value >= colors[i].stop && value <= colors[i + 1].stop) {
+          return colors[i].color;
+        }
+      }
+
+      return colors[colors.length - 1].color;
+    }
+
+    addAnnotations(x, y, z) {
+      var annotationsConfig: any[] = [];
+      for (let ann of this.annotations) {
+        let annotation = {
+          x: x[ann.index],
+          y: y[ann.index],
+          z: z[ann.index],
+          text: ann.name,
+          textangle: 0,
+          ax: 0,
+          ay: -50,
+          font: { color: "#d6deeb", size: 11 },
+          arrowcolor: "#d6deeb",
+          arrowwidth: 0.6,
+          arrowhead: 0,
+        };
+        annotationsConfig.push(annotation);
+      }
+      return annotationsConfig;
+    }
   }
+
+  customElements.define("three-pareto-front", ThreeParetoFront);
 </script>
