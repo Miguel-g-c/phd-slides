@@ -1,0 +1,169 @@
+---
+interface Objectives {
+  names: string[];
+  units: string[];
+  values: number[][];
+}
+
+interface DecisionVariables {
+  names: string[];
+  units: string[];
+  values: (string | number)[][];
+}
+
+interface Props {
+  id: string;
+  objectives: Objectives;
+  decisionVariables: DecisionVariables;
+  scenarioNames: string[];
+  colors: string[];
+}
+
+const { id, objectives, decisionVariables, scenarioNames, colors } =
+  Astro.props;
+
+const referenceValues = objectives.values[0];
+
+const normalizedObjectives = {
+  ...objectives,
+  displayNames: objectives.names.map(
+    (n, i) => `${n}<br>(${objectives.units[i]})`,
+  ),
+  relativeValues: objectives.values.map((scenario) => {
+    return scenario.map((value, index) => {
+      const referenceValue = referenceValues[index];
+      return (value / referenceValue) * 100;
+    });
+  }),
+};
+---
+
+<scenario-bars
+  class="flex flex-col items-center"
+  data-objectives={JSON.stringify(normalizedObjectives)}
+  data-decision-variables={JSON.stringify(decisionVariables)}
+  data-scenario-names={JSON.stringify(scenarioNames)}
+  data-colors={JSON.stringify(colors)}
+>
+  <div id={id} class="size-fit rounded-xl overflow-hidden"></div>
+</scenario-bars>
+
+<script>
+  import Plotly from "plotly.js-dist";
+
+  class ScenarioBars extends HTMLElement {
+    objectives: any;
+    decisionVariables: any;
+    scenarioNames: string[];
+    colors: string[];
+    graph: Plotly.PlotlyHTMLElement;
+
+    constructor() {
+      super();
+
+      this.objectives = JSON.parse(this.dataset.objectives ?? "{}");
+      this.decisionVariables = JSON.parse(
+        this.dataset.decisionVariables ?? "{}",
+      );
+      this.scenarioNames = JSON.parse(this.dataset.scenarioNames ?? "[]");
+      this.colors = JSON.parse(this.dataset.colors ?? "[]");
+      this.graph = this.querySelector("div")!;
+      this.render();
+    }
+
+    render() {
+      const data: any[] = [];
+      for (let i = 0; i < this.scenarioNames.length; i++) {
+        let trace = {
+          x: this.objectives.displayNames,
+          y: this.objectives.relativeValues[i],
+          name: this.scenarioNames[i],
+          type: "bar",
+          marker: {
+            color: this.colors[i],
+            opacity: 0.9,
+          },
+        };
+        data.push(trace);
+      }
+
+      const layout = {
+        margin: { l: 60, r: 20, b: 60, t: 20 },
+        paper_bgcolor: "#011627",
+        plot_bgcolor: "#011627",
+        hoverlabel: {
+          bgcolor: "#424a78",
+          font: { size: 10, color: "#d6deeb" },
+          bordercolor: "#d6deeb",
+        },
+        barmode: "group",
+        bargap: 0.3,
+        bargroupgap: 0.2,
+        xaxis: {
+          tickfont: { color: "#d6deeb", size: 11 },
+          gridcolor: "#0d2336",
+        },
+        yaxis: {
+          tickfont: { color: "#d6deeb", size: 11 },
+          zerolinecolor: "#637777",
+          gridcolor: "#0d2336",
+          ticksuffix: " %",
+        },
+        legend: {
+          x: 1.0,
+          y: 0.5,
+          font: { color: "#d6deeb", size: 11 },
+        },
+      };
+
+      const config = {
+        displaylogo: false,
+        displayModeBar: false,
+        responsive: true,
+      };
+
+      Plotly.newPlot(this.graph.id, data, layout, config);
+
+      this.graph.on("plotly_hover", (data) => {
+        let scenario = data.points[0].data.name;
+        let scenarioPos = this.scenarioNames.indexOf(scenario);
+        let objective = data.points[0].x;
+        let objectivePos = this.objectives.displayNames.indexOf(objective);
+
+        data.points[0].fullData.hovertemplate =
+          "<b>Decision variables</b><br>" +
+          `${this.renderDecisionVariables(scenarioPos)}` +
+          `${this.renderObjective(scenarioPos, objectivePos)}` +
+          "<extra></extra>";
+      });
+    }
+
+    renderDecisionVariables(pos) {
+      let str = "";
+      for (let i = 0; i < this.decisionVariables.names.length; i++) {
+        var name = this.decisionVariables.names[i];
+        var unit = this.decisionVariables.units[i];
+        var value = this.decisionVariables.values[pos][i];
+        value = isNaN(value) ? value : value.toFixed(2);
+        str += `${name}: ${value} ${unit}<br>`;
+      }
+      return str;
+    }
+
+    renderObjective(scenarioPos, objectivePos) {
+      let name = this.objectives.names[objectivePos];
+      let unit = this.objectives.units[objectivePos];
+      let value = this.objectives.values[scenarioPos][objectivePos];
+      let relativeValue =
+        this.objectives.relativeValues[scenarioPos][objectivePos];
+      let relativeDiff = relativeValue - 100;
+      return (
+        `<br><b>${name}</b><br>` +
+        `Value: ${value.toFixed(3)} ${unit}<br>` +
+        `Relative diff: ${relativeDiff.toFixed(2)} %<br>`
+      );
+    }
+  }
+
+  customElements.define("scenario-bars", ScenarioBars);
+</script>

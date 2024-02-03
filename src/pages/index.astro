@@ -2,14 +2,24 @@
 import CodeBlock from "../components/CodeBlock.astro";
 import Slide from "../components/Slide.astro";
 import SpeakerNote from "../components/SpeakerNote.astro";
+import ScenarioBars from "../components/ScenarioBars.astro";
 import ThreeParetoFront from "../components/ThreeParetoFront.astro";
 import TwoParetoFront from "../components/TwoParetoFront.astro";
 import Layout from "../layouts/Layout.astro";
 
 import { getEntry } from "astro:content";
 
-const moop2 = await getEntry("moops", "case2/moop1");
+const moop2 = await getEntry("moops", "case1/moop2");
 const moop3 = await getEntry("moops", "case2/moop2");
+const scenarios = await getEntry("moops", "case2/moop3");
+const scenarioNames = [
+  "Reference case",
+  "Scenario 1",
+  "Scenario 2",
+  "Scenario 3",
+  "Scenario 4",
+];
+const colors = ["#5ca7e4", "#addb67", "#c792ea", "#F78C6C", "#ecc48d"];
 ---
 
 <Layout
@@ -55,6 +65,15 @@ const moop3 = await getEntry("moops", "case2/moop2");
       id={moop2.id}
       objectives={moop2.data.objectives}
       decisionVariables={moop2.data.decisionVariables}
+    />
+  </Slide>
+  <Slide>
+    <ScenarioBars
+      id={scenarios.id}
+      objectives={scenarios.data.objectives}
+      decisionVariables={scenarios.data.decisionVariables}
+      scenarioNames={scenarioNames}
+      colors={colors}
     />
   </Slide>
 </Layout>
