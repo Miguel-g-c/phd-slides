@@ -8,6 +8,7 @@ import TwoParetoFront from "../components/TwoParetoFront.astro";
 import Layout from "../layouts/Layout.astro";
 
 import { getEntry } from "astro:content";
+import Portrait from "../slides/Portrait.astro";
 
 const moop2 = await getEntry("moops", "case1/moop2");
 const moop3 = await getEntry("moops", "case2/moop2");
@@ -23,10 +24,11 @@ const colors = ["#5ca7e4", "#addb67", "#c792ea", "#F78C6C", "#ecc48d"];
 ---
 
 <Layout
-  title="A New Holistic and Integrated Tool for the Eco-Design of Industrial Processes"
-  description="Sitio web de la defensa de doctorado para 'Una Nueva Herramienta Holística e Integrada para el Eco-Diseño de Procesos Industriales' por Miguel García Casas. Éste presenta una investigación que integra la simulación de procesos, el análisis del ciclo de vida (ACV) y el coste del ciclo de vida (ACCV) para la optimización basada en la sostenibilidad de los procesos industriales."
+  title="Una Nueva Herramienta Integrada y Holística para el Eco-Diseño de Procesos Industriales"
+  description="Sitio web de la defensa de doctorado para 'Una Nueva Herramienta Integrada y Holística para el Eco-Diseño de Procesos Industriales' por Miguel García Casas. Éste presenta una investigación que integra la simulación de procesos, el análisis del ciclo de vida (ACV) y el coste del ciclo de vida (ACCV) para la optimización basada en la sostenibilidad de los procesos industriales."
   author="Miguel García Casas"
 >
+  <Portrait />
   <Slide>
     <h1>Slide 1</h1>
     <p>This is a paragraph</p>
