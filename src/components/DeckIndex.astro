@@ -1,0 +1,48 @@
+---
+interface Props {
+  animate?: boolean;
+  active?: string;
+}
+
+const { animate = false, active } = Astro.props;
+
+var indexClass = "text-4xl mb-2";
+var subIndexClass = "text-3xl mb-2";
+
+if (animate) {
+  indexClass += " fragment fade-up";
+  subIndexClass += " fragment fade-up";
+}
+
+const isActive = (i) => (active === i ? "text-white opacity-90" : "");
+---
+
+<h2>Índice</h2>
+<ol>
+  <li class={`${indexClass} ${isActive("1")}`}>Motivación</li>
+  <li class={`${indexClass} ${isActive("2")}`}>Objetivos</li>
+  <li class={`${indexClass} ${isActive("3")}`}>
+    Marco metodológico para el ecodiseño de procesos industriales
+  </li>
+  <li class={`${indexClass} ${isActive("4")}`}>
+    Herramienta de ecodiseño para procesos industriales: eco2des
+  </li>
+  <li class={`${indexClass} ${isActive("5")}`}>Revisión del estado del arte</li>
+  <li
+    class={`${indexClass} ${isActive("6")} ${isActive("6.1")} ${isActive("6.2")}`}
+  >
+    Casos de estudio
+  </li>
+  <ol>
+    <li value="6" class={`${subIndexClass} ${isActive("6.1")}`}>
+      1. Metanación de CO<sub>2</sub> para el almacenamiento de energía eólica en
+      la red de gas natural
+    </li>
+    <li value="6" class={`${subIndexClass} ${isActive("6.2")}`}>
+      2. Producción de biocombustibles desde biomasa
+    </li>
+  </ol>
+  <li class={`${indexClass} ${isActive("7")}`}>
+    Discusiones y conclusiones generales
+  </li>
+</ol>
