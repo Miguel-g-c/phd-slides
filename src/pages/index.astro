@@ -9,6 +9,7 @@ import Layout from "../layouts/Layout.astro";
 
 import { getEntry } from "astro:content";
 import Portrait from "../slides/Portrait.astro";
+import Motivation from "../slides/Motivation.astro";
 import DeckIndex from "../components/DeckIndex.astro";
 
 const moop2 = await getEntry("moops", "case1/moop2");
@@ -36,9 +37,7 @@ const colors = ["#5ca7e4", "#addb67", "#c792ea", "#F78C6C", "#ecc48d"];
   <Slide>
     <DeckIndex active="1" />
   </Slide>
-  <Slide>
-    <h2>Motivación</h2>
-  </Slide>
+  <Motivation />
   <Slide>
     <h1>Slide 1</h1>
     <p>This is a paragraph</p>
