@@ -1,0 +1,244 @@
+---
+import Figure from "../components/Figure.astro";
+import Framework from "../components/figures/Framework.astro";
+import Interpretation from "../components/figures/Interpretation.astro";
+import KeyWord from "../components/KeyWord.astro";
+import Optimization from "../components/figures/Optimization.astro";
+import PLCI from "../components/figures/PLCI.astro";
+import Simulation from "../components/figures/Simulation.astro";
+import Slide from "../components/Slide.astro";
+import SpeakerNote from "../components/SpeakerNote.astro";
+---
+
+<Slide>
+  <Slide>
+    <h2>Marco metodológico</h2>
+    <ul class="!list-none">
+      <li class="text-pretty">
+        Se basa en el <KeyWord>pensamiento del ciclo de vida</KeyWord> y sus estándares
+        existentes, con el objetivo principal de desarrollar una
+        <KeyWord>metodología holística</KeyWord> para el
+        <KeyWord>ecodiseño</KeyWord> de <KeyWord>procesos industriales</KeyWord>
+        que combine <KeyWord>simulación de procesos</KeyWord>,
+        <KeyWord>ACV</KeyWord>, <KeyWord>ACCV</KeyWord> y
+        <KeyWord>optimización multiobjetivo</KeyWord>.
+      </li>
+    </ul>
+    <SpeakerNote>
+      <p>
+        Con el objetivo de resolver todas las necesidades y problemas
+        anteriormente expuestos.
+      </p>
+      <p>
+        Cabe destacar que el marco metodológico propuesto es el resultado de un
+        proceso iterativo, de modo que se ha ido refinando a lo largo de la
+        tesis para responder a las necesidades técnicas que han surgido durante
+        el desarrollo de la herramienta, así como a las necesidades y
+        limitaciones surgidas durante su aplicación en los casos de estudio.
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Marco metodológico</h2>
+    <Figure>
+      <Framework class="h-full" />
+    </Figure>
+    <SpeakerNote>
+      <p>
+        Esta imagen os resultará familiar, sobre todo a aquellos que trabajéis
+        con ACV. Ya que no hemos querido reinventar la rueda, sino que hemos
+        querido aprovechar los estándares existentes para poder desarrollar una
+        metodología que sea fácilmente integrable en la industria. A pesar de
+        estar fuertemente influenciada por la serie ISO 14000, no es exactamente
+        igual:
+      </p>
+      <ol>
+        <li>
+          Inventario PREDICTIVO del ciclo de vida. Eso qué significa? Pues que
+          se ha integrado la simulación de procesos en la generación de datos de
+          inventario. De una forma dinámica y no estática, en el sentido de que
+          los datos de inventario responden a cambios en la simulación. La
+          simulación o modelo predictivo está interconectado con el inventario
+          del ciclo de vida, automatizando la generación de datos.
+        </li>
+        <li>
+          Existe un elemento entre la Evaluación del impacto y la
+          Interpretación. Éste es la optimización multiobjetivo. Gracias a los
+          algoritmos genéticos, se pueden valorar miles de escenarios de forma
+          automática. Facilitando la Interpretación y en consecuencia la toma de
+          decisiones.
+        </li>
+      </ol>
+      <p>Hablar de la naturaleza iterativa del marco.</p>
+      <p>Veamos cada uno de los elementos de la metodología en detalle...</p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Definición del objetivo y del alcance</h3>
+    <ul class="!list-none">
+      <li class="text-pretty">
+        El propósito principal radica en la
+        <KeyWord>formulación de un diseño</KeyWord> para
+        <KeyWord>procesos industriales</KeyWord> que, a lo largo de todo su
+        <KeyWord>ciclo de vida</KeyWord>, <KeyWord>reduzca</KeyWord> al máximo los
+        <KeyWord>impactos medioambientales</KeyWord> y los
+        <KeyWord>costes</KeyWord>, siempre respetando las restricciones
+        tecnológicas inherentes.
+      </li>
+    </ul>
+    <SpeakerNote>
+      <p>
+        El inicio de cualquier estudio orientado al ciclo de vida se encuentra
+        en la precisa delimitación de su objetivo y alcance.
+      </p>
+      <p>
+        Debido a la naturaleza iterativa de este proceso, el alcance puede
+        ajustarse y afinarse conforme avanza el estudio. Pero ha de definir, al
+        menos, el sistema de producto, la unidad funcional, los límites del
+        sistema, los protocolos de asignación, la metodología correspondiente al
+        ACV, los indicadores económicos relacionados con el ACCV, y aspectos
+        relacionados con la optimización, como los objetivos, el espacio de
+        decisión, las barreras del problema; y, por último, la interpretación de
+        los resultados.
+      </p>
+      <p>Importante destacar los siguientes aspectos:</p>
+      <ul>
+        <li>
+          En la definición del sistema de producto, el sistema de primer plano
+          queda estructurado en la simulación mientras que el sistema de fondo
+          se modela generalmente mediante el uso de bases de datos
+          especializadas, como Ecoinvent para el ACV o IEA para el ACCV.
+        </li>
+        <li>
+          La unidad funcional debe satisfacer las necesidades tanto del ACV como
+          del ACCV.
+        </li>
+        <li>
+          En cuanto a los límites del sistema, una estrategia de cuna a puerta
+          resulta suficiente para optimizar los parámetros de diseño del proceso
+          industrial. Aun así, se sugiere considerar una extensión hacia una
+          perspectiva de cuna a tumba, post-optimización, con el fin de obtener
+          un análisis panorámico y completo, en particular de los impactos
+          medioambientales.
+        </li>
+      </ul>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Análisis del inventario predictivo del ciclo de vida</h3>
+    <Figure>
+      <PLCI class="h-full" />
+    </Figure>
+    <SpeakerNote>
+      <p>
+        Etapa principal de la metodología. En la que se lleva a cabo la
+        recopilación de datos de inventario. De naturaleza iterativa, esta etapa
+        involucra no solo al modelo de simulación del proceso, sino también al
+        modelo de ACV, al modelo de ACCV y el problema de optimización. Esta
+        interacción da como resultado un inventario predictivo y
+        autodescriptivo, íntimamente ligado al proceso simulado que facilita la
+        actualización automática del inventario ante cambios en los datos de
+        entrada de la simulación y posibilita su integración en una estructura
+        de optimización.
+      </p>
+      <p>Un pilar fundamental de esta etapa es la simulación del proceso...</p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Análisis del inventario predictivo del ciclo de vida</h3>
+    <Figure>
+      <Simulation class="h-full" />
+    </Figure>
+    <SpeakerNote>
+      <p>
+        Para garantizar su fiabilidad, el modelo debe ofrecer resultados que
+        converjan dentro del espacio de decisión previamente delimitado para el
+        problema de optimización, lo que podría implicar ajustes en dicho
+        espacio o en el modelo en sí.
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Evaluación del impacto del ciclo de vida</h3>
+    <ul class="!list-none">
+      <li class="text-pretty">
+        Se da un <KeyWord>tratamiento analítico</KeyWord> a los datos del inventario
+        predictivo, obtenidos en la etapa previa, con el fin de
+        <KeyWord>determinar los impactos</KeyWord> tanto
+        <KeyWord>ambientales</KeyWord> como <KeyWord>económicos</KeyWord>
+        por medio de los modelos de ACV y ACCV.
+      </li>
+    </ul>
+    <SpeakerNote>
+      <p>
+        Desde una perspectiva ambiental, las corrientes de entrada y salida son
+        categorizados en distintas áreas de impacto. Estas categorías son
+        esenciales, ya que posteriormente pueden convertirse en objetivos a
+        considerar en el problema de optimización.
+      </p>
+      <p>
+        Desde el punto de vista económico, aquellos datos del inventario
+        predictivo que están vinculados a elementos con un coste directo son
+        utilizados para determinar el CAPEX y el OPEX del sistema de producto en
+        cuestión. A su vez, se elabora un modelo detallado de flujo de caja, que
+        arroja indicadores adicionales de desempeño económico, que también
+        pueden ser objetivos del problema de optimización.
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Optimización multiobjetivo</h3>
+    <Figure>
+      <Optimization class="h-full" />
+    </Figure>
+    <SpeakerNote>
+      <p>
+        La etapa de optimización multiobjetivo se estructura de manera coherente
+        con las fases previas de análisis de inventario predictivo del ciclo de
+        vida y evaluación del impacto del ciclo de vida.
+      </p>
+      <p>
+        Los objetivos específicos de optimización emergen a partir de los datos
+        obtenidos en el inventario predictivo y de los resultados arrojados en
+        la evaluación del impacto del ciclo de vida.
+      </p>
+      <p>
+        El espacio de decisión, en este contexto, se esculpe a partir de los
+        parámetros de diseño y las decisiones topológicas asumidas en los
+        modelos de simulación y ciclo de vida.
+      </p>
+      <p>
+        Mientras las restricciones técnicas se integran de manera intrínseca en
+        el modelo de simulación, existe la posibilidad de añadir restricciones
+        adicionales directamente en el problema de optimización. Como una
+        rentabilidad mínima esperada por los accionistas.
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Interpretación</h3>
+    <Figure>
+      <Interpretation class="h-full" />
+    </Figure>
+    <SpeakerNote>
+      <p>
+        Al tratarse de una metodología iterativa, la fase de interpretación está
+        presente desde el minuto uno del estudio, sintetizando y analizando de
+        forma crítica la información obtenida, refinando si es necesario
+        cualquiera de las otras fases.
+      </p>
+      <p>
+        Los controles de sensibilidad desempeñan un papel vital, ya que permiten
+        evaluar la influencia de las incertidumbres presentes en los datos y
+        ajustar el espacio de decisión, afinando así el proceso de simulación y
+        asegurando una mayor fiabilidad en los modelos de ACV y ACCV.
+      </p>
+      <p>
+        Es importante subrayar que la integración de la optimización
+        multiobjetivo dentro del marco metodológico facilita y enriquece la
+        interpretación final, automatizando la evaluación de miles de escenarios
+        óptimos.
+      </p>
+    </SpeakerNote>
+  </Slide>
+</Slide>

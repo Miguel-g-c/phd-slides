@@ -9,6 +9,7 @@ import Layout from "../layouts/Layout.astro";
 
 import { getEntry } from "astro:content";
 import Portrait from "../slides/Portrait.astro";
+import Methodology from "../slides/Methodology.astro";
 import Motivation from "../slides/Motivation.astro";
 import DeckIndex from "../components/DeckIndex.astro";
 import Objectives from "../slides/Objectives.astro";
@@ -48,6 +49,10 @@ const colors = ["#5ca7e4", "#addb67", "#c792ea", "#F78C6C", "#ecc48d"];
     <DeckIndex active="3" />
   </Slide>
   <StateOfTheArt />
+  <Slide>
+    <DeckIndex active="4" />
+  </Slide>
+  <Methodology />
   <Slide>
     <h1>Slide 1</h1>
     <p>This is a paragraph</p>
