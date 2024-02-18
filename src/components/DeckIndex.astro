@@ -6,8 +6,8 @@ interface Props {
 
 const { animate, active } = Astro.props;
 
-var indexClass = "text-4xl mb-2";
-var subIndexClass = "text-3xl mb-2";
+var indexClass = "text-4xl";
+var subIndexClass = "text-3xl";
 
 if (animate) {
   indexClass += " fragment fade-up";
@@ -18,7 +18,7 @@ const isActive = (i) => (active === i ? "text-white opacity-90" : "");
 ---
 
 <h2>Índice</h2>
-<ol>
+<ol class="!flex flex-col gap-3">
   <li class={`${indexClass} ${isActive("1")}`}>Motivación</li>
   <li class={`${indexClass} ${isActive("2")}`}>Objetivos</li>
   <li class={`${indexClass} ${isActive("3")}`}>Revisión del estado del arte</li>
