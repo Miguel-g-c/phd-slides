@@ -1,0 +1,212 @@
+---
+import Architecture from "../components/figures/Architecture.astro";
+import AspenPlus from "../components/icons/AspenPlus.astro";
+import Brightway from "../components/icons/Brightway.astro";
+import Figure from "../components/Figure.astro";
+import KeyWord from "../components/KeyWord.astro";
+import MongoDB from "../components/icons/MongoDB.astro";
+import Numpy from "../components/icons/Numpy.astro";
+import Pygmo from "../components/icons/Pygmo.astro";
+import Python from "../components/icons/Python.astro";
+import Slide from "../components/Slide.astro";
+import SpeakerNote from "../components/SpeakerNote.astro";
+import SQLite from "../components/icons/SQLite.astro";
+import TechStack from "../components/TechStack.astro";
+
+const techs = {
+  ASPEN: {
+    name: "Aspen Plus",
+    icon: AspenPlus,
+  },
+  BRIGHTWAY: {
+    name: "Brightway 2",
+    icon: Brightway,
+  },
+  MONGO: {
+    name: "MongoDB",
+    icon: MongoDB,
+  },
+  NUMPY: {
+    name: "Numpy",
+    icon: Numpy,
+  },
+  PYGMO: {
+    name: "Pygmo",
+    icon: Pygmo,
+  },
+  PYTHON: {
+    name: "Python",
+    icon: Python,
+  },
+  SQLITE: {
+    name: "SQLite",
+    icon: SQLite,
+  },
+};
+---
+
+<Slide>
+  <Slide>
+    <h2 class="!lowercase">eco2des</h2>
+    <p class="text-left text-pretty">
+      <KeyWord>eco2des</KeyWord> ha sido desarrollada en
+      <KeyWord>Python</KeyWord> para la <KeyWord>optimización</KeyWord> de
+      <KeyWord>procesos industriales</KeyWord> en base a
+      <KeyWord>criterios sostenibles</KeyWord> y ofrece soluciones prometedoras a
+      la creciente demanda de cadenas de valor más sostenibles y toma de decisiones
+      basadas en datos.
+    </p>
+    <SpeakerNote>
+      eco2des documenta los inventarios del ciclo de vida, caracterizándolos
+      mediante el impacto ambiental y económico, utilizando la simulación para
+      la producción automática del inventario predictivo del ciclo de vida.
+      Además, mediante la integración de la optimización multiobjetivo, eco2des
+      permite automatizar y agilizar la toma de decisiones durante la fase de
+      interpretación.
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2 class="!lowercase">eco2des</h2>
+    <Figure>
+      <Architecture class="h-full" />
+    </Figure>
+    <SpeakerNote>
+      La arquitectura de eco2des se construye en torno a principios de
+      modularidad y mantenibilidad, utilizando el paradigma de la programación
+      orientada a objetos para facilitar la expansión y la integración con otros
+      sistemas y aplicaciones.
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3 class="!lowercase">e2dprojects</h3>
+    <p class="text-left text-pretty">
+      <KeyWord>Administra</KeyWord> la logística de los
+      <KeyWord>proyectos</KeyWord> dentro de la herramienta. Un
+      <KeyWord>proyecto</KeyWord> puede ser entendido como un contenedor para todas
+      las entidades relevantes.
+    </p>
+    <TechStack size={20} technologies={[techs.PYTHON, techs.SQLITE]} />
+    <SpeakerNote>
+      <p>
+        Entidades: desde la simulación de procesos y los modelos de ACV/ACCV,
+        hasta la configuración del problema de optimización.
+      </p>
+      <p>
+        Completamente escrito en Python, utiliza SQLite para almacenar metadatos
+        del proyecto como: nombre, localización, directorios donde se encuantran
+        el archivo de simulación o los resultados, etc.
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3 class="!lowercase">e2dsimulation</h3>
+    <p class="text-left text-pretty">
+      <KeyWord>Interfaz</KeyWord> que se comunica con la
+      <KeyWord>simulación del proceso</KeyWord>. Actualmente, funciona con
+      <KeyWord>Aspen Plus</KeyWord> y es capaz de navegar y modificar el árbol de
+      datos de la simulación.
+    </p>
+    <TechStack
+      size={20}
+      technologies={[techs.PYTHON, techs.ASPEN, techs.MONGO]}
+    />
+    <SpeakerNote>
+      <p>
+        Escrito en Python. Usa COM (Component Object Model) de Windows para
+        interactuar con Aspen Plus mediante la libreria pywin32. Run, navegar...
+      </p>
+      <p>
+        Actualmente, fuertemente ligado a Aspen, pero se ha diseñado con la
+        escalabilidad en mente. Por lo que existe una clase abstracta,
+        ComConnection, que define el contrato de la API usada por otros modulos
+        de la herramienta. Y que en el futuro puede ser extendida con otras
+        clases que heredan de ella y que srvan para concectar con otros
+        simuladores.
+      </p>
+      <p>
+        Finalmente, MongoDB se usa para almacenar los datos de la simulación:
+        corrientes, equipos, calculators, ect. Ya que Aspen Plus guaarda todo en
+        un árbol de datos que es fácilmente mapeable a un documento JSON.
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3 class="!lowercase">e2dlca</h3>
+    <p class="text-left text-pretty">
+      <KeyWord>Cuantifica</KeyWord> los <KeyWord>impactos ambientales</KeyWord> del
+      proceso. Para ello, construye y resuelve un sistema de producto matricial conforme
+      a la metodología de <KeyWord>ACV</KeyWord>.
+    </p>
+    <TechStack
+      size={20}
+      technologies={[techs.PYTHON, techs.BRIGHTWAY, techs.NUMPY, techs.SQLITE]}
+    />
+    <SpeakerNote>
+      <p>
+        Escrito en Python. Hereda la mayoría de sus capacidades de Brightway2,
+        un framework open-source para realizar cálculos de ACV.
+      </p>
+      <p>
+        Las bases de datos de inventario, como Ecoinvent, son almacenadas en
+        SQLite. Tecnología soportada por Brightway2.
+      </p>
+      <p>
+        Incluye mejoras de rendimiento orientadas a la resolución de problemas
+        de optimización. HABLAR DEL PROBLEMA CON BRIGHTWAY. Para ello, las
+        matrices del sistema son cacheadas en memoria y mediante índices es
+        capaz de modificar las valores de la matriz en cada iteración de la
+        optimización. Para lo que se usa Numpy, una librería de Python para
+        cálculos numéricos con matrices.
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3 class="!lowercase">e2dlcc</h3>
+    <p class="text-left text-pretty">
+      <KeyWord>Cuantifica</KeyWord> los <KeyWord>impactos económicos</KeyWord> del
+      proceso. Para ello, construye y resuelve un <KeyWord>ACCV</KeyWord> convencional
+      de cuna a puerta.
+    </p>
+    <TechStack
+      size={20}
+      technologies={[techs.PYTHON, techs.NUMPY, techs.SQLITE]}
+    />
+    <SpeakerNote>
+      <p>
+        Escrito en Python desde cero. Contiene distintos métodos para calcular
+        el CAPEX, el OPEX, el TIR, el VAN, etc. Para ello, implementa el método
+        factorial explicado en detalle en el libro de Diseño en Ingeniería
+        Química de Gavin Towler y Ray Sinnott.
+      </p>
+      <p>
+        El CAPEX y el OPEX no son más que vectores. Y el modelo financiero una
+        matriz. Por ello, este módulo utiliza también las capacidades de Numpy.
+      </p>
+      <p>
+        Por último, SQLite se utiliza para guardar el estado de un proyecto
+        relacionado con sus costes. Equipos, materias primas, precios de
+        productos, índices de precios, etc.
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3 class="!lowercase">e2doptmization</h3>
+    <p class="text-left text-pretty">
+      <KeyWord>Interfaz</KeyWord> para la <KeyWord>formulación</KeyWord> y
+      <KeyWord>resolución</KeyWord> de problemas de
+      <KeyWord>optimización multiobjetivo</KeyWord>.
+    </p>
+    <TechStack size={20} technologies={[techs.PYTHON, techs.PYGMO]} />
+    <SpeakerNote>
+      <p>
+        Escrito, como no, en Python, ofrece a los usuarios la posibilidad de
+        definir variables de decisión, establecer límites y objetivos.
+      </p>
+      <p>
+        El módulo proporciona varios algoritmos de optimización global
+        heurísticos para uno o varios objetivos, heredados de la biblioteca
+        pygmo.
+      </p>
+    </SpeakerNote>
+  </Slide>
+</Slide>

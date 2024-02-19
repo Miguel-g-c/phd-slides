@@ -1,0 +1,34 @@
+---
+interface Tech {
+  name: string;
+  icon: (_props: Record<string, any>) => any;
+}
+
+interface Props {
+  size: number;
+  technologies: Tech[];
+}
+
+const { size, technologies } = Astro.props;
+const rems = `${size / 4}rem`;
+---
+
+<h4>Tecnologías</h4>
+<div
+  class="inline-flex flex-row gap-4 items-center py-3 px-6 rounded-3xl bg-[#011627]/50"
+>
+  {
+    technologies.map((tech) => (
+      <div title={tech.name}>
+        <tech.icon class="tech-icon" />
+      </div>
+    ))
+  }
+</div>
+
+<style define:vars={{ rems }}>
+  .tech-icon {
+    width: var(--rems);
+    height: var(--rems);
+  }
+</style>

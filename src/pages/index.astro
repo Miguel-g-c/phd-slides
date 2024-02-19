@@ -14,6 +14,7 @@ import Motivation from "../slides/Motivation.astro";
 import DeckIndex from "../components/DeckIndex.astro";
 import Objectives from "../slides/Objectives.astro";
 import StateOfTheArt from "../slides/StateOfTheArt.astro";
+import Tool from "../slides/Tool.astro";
 
 const moop2 = await getEntry("moops", "case1/moop2");
 const moop3 = await getEntry("moops", "case2/moop2");
@@ -53,6 +54,17 @@ const colors = ["#5ca7e4", "#addb67", "#c792ea", "#F78C6C", "#ecc48d"];
     <DeckIndex active="4" />
   </Slide>
   <Methodology />
+  <Slide>
+    <DeckIndex active="5" />
+    <SpeakerNote>
+      La metodología se integra en una herramienta, un software que facilita su
+      integración y aplicabilidad. Ya que apliacarla a mano sería una locura, al
+      igual que sucede con el ACV. Sin software especializado, los
+      profesionales, perdonarme la expresión, se morirían de asco batallando con
+      un Excel.
+    </SpeakerNote>
+  </Slide>
+  <Tool />
   <Slide>
     <h1>Slide 1</h1>
     <p>This is a paragraph</p>
