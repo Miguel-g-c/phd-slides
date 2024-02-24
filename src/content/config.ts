@@ -17,11 +17,17 @@ const moopSchema = z.object({
   objectives: objectivesSchema,
 });
 
-const moopCollection = defineCollection({
+const moops = defineCollection({
   type: "data",
   schema: moopSchema,
 });
 
-export const collections = {
-  moops: moopCollection,
-};
+const snippets = defineCollection({
+  type: "content",
+  schema: z.object({
+    language: z.string(),
+    highlightLines: z.string().optional(),
+  }),
+});
+
+export const collections = { moops, snippets };

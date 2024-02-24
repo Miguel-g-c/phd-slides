@@ -3,11 +3,12 @@ import CodeBlock from "../components/CodeBlock.astro";
 import Slide from "../components/Slide.astro";
 import SpeakerNote from "../components/SpeakerNote.astro";
 import ScenarioBars from "../components/ScenarioBars.astro";
+import CodeSnippet from "../components/CodeSnippet.astro";
 import ThreeParetoFront from "../components/ThreeParetoFront.astro";
 import TwoParetoFront from "../components/TwoParetoFront.astro";
 import Layout from "../layouts/Layout.astro";
 
-import { getEntry } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import Portrait from "../slides/Portrait.astro";
 import Methodology from "../slides/Methodology.astro";
 import Motivation from "../slides/Motivation.astro";
@@ -15,6 +16,20 @@ import DeckIndex from "../components/DeckIndex.astro";
 import Objectives from "../slides/Objectives.astro";
 import StateOfTheArt from "../slides/StateOfTheArt.astro";
 import Tool from "../slides/Tool.astro";
+import CaseStudy1 from "../slides/CaseStudy1.astro";
+
+function parseSnippet(snippet) {
+  return {
+    language: snippet.data.language,
+    highlightLines: snippet.data.highlightLines,
+    code: snippet.body.replace(/```py/, "").replace(/```/, ""),
+  };
+}
+
+const snippets = (await getCollection("snippets")).reduce((acc, snippet) => {
+  acc[snippet.slug] = parseSnippet(snippet);
+  return acc;
+}, {});
 
 const moop2 = await getEntry("moops", "case1/moop2");
 const moop3 = await getEntry("moops", "case2/moop2");
@@ -67,15 +82,7 @@ const colors = ["#5ca7e4", "#addb67", "#c792ea", "#F78C6C", "#ecc48d"];
   <Tool />
   <Slide>
     <h1>Slide 1</h1>
-    <p>This is a paragraph</p>
-    <CodeBlock language="python">
-      {
-        `
-		def function(): 
-			print("Hello world!")
-	  `
-      }
-    </CodeBlock>
+    <CodeSnippet content={snippets["define_optimization_problem"]} />
     <SpeakerNote>Just a note</SpeakerNote>
   </Slide>
   <Slide>

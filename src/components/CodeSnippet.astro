@@ -1,0 +1,19 @@
+---
+import CodeBlock from "./CodeBlock.astro";
+
+interface Snippet {
+  language: string;
+  code: string;
+  highlightLines?: string;
+}
+
+interface Props {
+  content: Snippet;
+}
+
+const { content } = Astro.props;
+---
+
+<CodeBlock language={content.language} highlightLines={content.highlightLines}>
+  {content.code}
+</CodeBlock>
