@@ -81,6 +81,27 @@ const colors = ["#5ca7e4", "#addb67", "#c792ea", "#F78C6C", "#ecc48d"];
   </Slide>
   <Tool />
   <Slide>
+    <DeckIndex active="6" />
+    <SpeakerNote>
+      El marco metodológico y la herramienta propuestos para el ecodiseño de
+      procesos industriales se han validado en varios casos prácticos, en la
+      tesis se han incluido 2. El primero se refiere a la metanación de dióxido
+      de carbono para el almacenamiento de energía eólica en la red de gas
+      natural. Este estudio se utiliza para demostrar las características clave
+      de la herramienta eco2des y orientar sobre su aplicación. El segundo caso
+      de estudio trata la producción de combustibles sintéticos a partir de
+      biomasa. Un caso más complejo para mostrar la capacidad de eco2des para
+      proporcionar diseños sostenibles y conclusiones fiables sobre tecnologías
+      novedosas.
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <DeckIndex active="6.1" />
+    <SpeakerNote> Abordemos el primero de ellos... </SpeakerNote>
+  </Slide>
+  <CaseStudy1 />
+
+  <Slide>
     <h1>Slide 1</h1>
     <CodeSnippet content={snippets["define_optimization_problem"]} />
     <SpeakerNote>Just a note</SpeakerNote>
@@ -88,29 +109,6 @@ const colors = ["#5ca7e4", "#addb67", "#c792ea", "#F78C6C", "#ecc48d"];
   <Slide>
     <h1>Slide 2</h1>
     <p>This is a paragraph</p>
-  </Slide>
-  <Slide>
-    <ThreeParetoFront
-      id={moop3.id}
-      objectives={moop3.data.objectives}
-      decisionVariables={moop3.data.decisionVariables}
-      x_index={0}
-      y_index={2}
-      z_index={1}
-      annotations={[
-        { name: "Reference case", index: 5 },
-        { name: "Scenario 1", index: 50 },
-        { name: "Scenario 2", index: 100 },
-      ]}
-    />
-  </Slide>
-
-  <Slide>
-    <TwoParetoFront
-      id={moop2.id}
-      objectives={moop2.data.objectives}
-      decisionVariables={moop2.data.decisionVariables}
-    />
   </Slide>
   <Slide>
     <ScenarioBars

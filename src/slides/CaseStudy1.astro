@@ -1,0 +1,631 @@
+---
+import CodeSnippet from "../components/CodeSnippet.astro";
+import Figure from "../components/Figure.astro";
+import Marker from "../components/Marker.astro";
+import MoopTable from "../components/MoopTable.astro";
+import KeyWord from "../components/KeyWord.astro";
+import Slide from "../components/Slide.astro";
+import SpeakerNote from "../components/SpeakerNote.astro";
+import ThreeParetoFront from "../components/ThreeParetoFront.astro";
+import TwoParetoFront from "../components/TwoParetoFront.astro";
+
+import { getCollection, getEntry } from "astro:content";
+
+function parseSnippet(snippet) {
+  return {
+    language: snippet.data.language,
+    highlightLines: snippet.data.highlightLines,
+    code: snippet.body.replace(/```py/, "").replace(/```/, ""),
+  };
+}
+
+const snippets = (await getCollection("snippets")).reduce((acc, snippet) => {
+  acc[snippet.slug] = parseSnippet(snippet);
+  return acc;
+}, {});
+
+const moop1 = await getEntry("moops", "case1/moop1");
+const moop2 = await getEntry("moops", "case1/moop2");
+
+const objectiveFunctions = [
+  {
+    name: "MOOP1",
+    value: "min(GWP, LCOP, -η)",
+  },
+  {
+    name: "MOOP2",
+    value: "min(LCOP, -η)",
+  },
+];
+
+const constraints = [
+  {
+    name: "Restricción 1",
+    value: "SNG[H<sub>2</sub>] &lt; 5 %",
+  },
+  {
+    name: "Restricción 2",
+    value: "SNG[CO] &lt; 2 %",
+  },
+  {
+    name: "Restricción 3",
+    value: "SNG[CO<sub>2</sub>] &lt; 2 %",
+  },
+];
+
+const decisionVariables = [
+  {
+    name: "H<sub>2</sub>/CO<sub>2</sub> ratio",
+    lowerLimit: 4,
+    upperLimit: 5,
+  },
+  {
+    name: "Temperatura del reactor, ⁰C",
+    lowerLimit: 250,
+    upperLimit: 400,
+  },
+  {
+    name: "Longitud del reactor, m",
+    lowerLimit: 1,
+    upperLimit: 20,
+  },
+  {
+    name: "LD ratio del reactor",
+    lowerLimit: 1,
+    upperLimit: 10,
+  },
+  {
+    name: "Fluido de trabajo (entera)",
+    lowerLimit: 0,
+    upperLimit: 1,
+  },
+];
+
+const annotation = `
+SNG[i]: composición molar del componente i en el gas natural sintético; LD:
+longitud-diámetro; GWP: potencial de calentamiento global; LCOP: coste
+nivelado de producción; η: eficiencia de almacenamiento.
+`;
+---
+
+<Slide>
+  <Slide>
+    <h2>Contexto</h2>
+    <p class="text-left text-pretty">
+      Las <KeyWord>fuentes de energía convencionales</KeyWord> están siendo reemplazadas
+      por <KeyWord>fuentes renovables</KeyWord>; sin embargo, éstas no pueden
+      proporcionar una <KeyWord>potencia eléctrica base</KeyWord> constante, lo que
+      requiere la integración de <KeyWord>sistemas de almacenamiento</KeyWord> en
+      la red.
+    </p>
+    <SpeakerNote> Como nuclear o fósil, por solar o eólica. </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Contexto</h2>
+    <p class="text-left text-pretty">
+      Para el <KeyWord>almacenamiento estacional</KeyWord> de energía en grandes
+      capacidades, la <KeyWord>energía eléctrica</KeyWord> puede convertirse en
+      <KeyWord>energía química</KeyWord> transfiriéndola a combustibles.
+    </p>
+    <SpeakerNote>
+      <p>Estacional = 1 día hasta 1 año.</p>
+      <p>
+        Como la producción de hidrógeno mediante la electrólisis; sin embargo,
+        actualmente no existe una red de hidrógeno o un sistema de
+        almacenamiento suficientemente grande desarrollado en ningún país.
+      </p>
+      <p>Hasta que se satisfaga este requisito...</p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Contexto</h2>
+    <p class="text-left text-pretty">
+      La <KeyWord>red de gas natural</KeyWord> pueden utilizarse para el
+      <KeyWord>almacenamiento estacional</KeyWord>, utilizando la electrólisis
+      para producir <KeyWord>hidrógeno</KeyWord> que reacciona con
+      <KeyWord>dióxido de carbono</KeyWord> para producir
+      <KeyWord>gas natural sintético</KeyWord>.
+    </p>
+    <p>
+      <KeyWord>
+        CO<sub>2</sub> + 4H<sub>2</sub> &harr; CH<sub>4</sub> + 2H<sub>2</sub>O
+      </KeyWord>
+    </p>
+    <SpeakerNote>
+      <p>
+        La metanación de dióxido de carbono es una reacción catalítica
+        exotérmica, operada típicamente a temperaturas entre 200°C y 550°C
+        dependiendo del catalizador utilizado.
+      </p>
+      <p>Descubierta al principio del siglo XX por Sabatier.</p>
+      <p>
+        Consume dióxido de carbono, contribuyendo a la reducción de las
+        emisiones de gases de efecto invernadero
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Definición del objetivo y del alcance</h2>
+    <p class="text-left text-pretty">
+      <KeyWord>Optimizar</KeyWord> el diseño de la
+      <KeyWord>metanación de CO<sub>2</sub></KeyWord> para el almacenamiento de energía
+      eólica en la red de gas natural,
+      <KeyWord>minimizando impactos ambientales y costes</KeyWord>, y
+      <KeyWord>maximizando la eficiencia</KeyWord> energética del almacenamiento.
+    </p>
+    <SpeakerNote>
+      <p>El objetivo del estudio es...</p>
+      <p>
+        Para el estudio ambiental se ha seleccionado la base de datos ecoinvent
+        3.6 modelo Cut-Off como sistema de fondo, y se ha elegido la categoría
+        de calentamiento global para medir el impacto ambiental del proceso.
+      </p>
+      <p>
+        Por otro lado, en el aspecto económico, el rendimiento se mide a través
+        del coste nivelado de producto de GNS, cuantificado en euros por metro
+        cúbico normal.
+      </p>
+      <p>
+        Por último, el rendimiento técnico se mide a través de la eficiencia de
+        almacenamiento, calculada dividiendo el valor calorífico inferior del
+        GNS por la energía eléctrica consumida en el proceso.
+      </p>
+      <p>
+        Del mismo modo, el objetivo de la presentación de este caso práctico es
+        demostrar las capacidades de la herramienta eco2des.
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Definición del objetivo y del alcance</h2>
+    <p class="text-left text-pretty">
+      Los <KeyWord>límites del sistema</KeyWord> se establecen de
+      <KeyWord>cuna a puerta</KeyWord>, abarcando desde la captación de dióxido
+      de carbono de una emisión industrial, pasando por la generación de
+      hidrógeno vía electrólisis impulsada por electricidad eólica sobrante,
+      hasta la síntesis y almacenaje estacional del gas natural sintético.
+    </p>
+    <SpeakerNote>
+      Este alcance es suficiente para la optimización, ya que el proceso se
+      compara con otras variantes de él mismo. No con otras tecnologías de
+      almacenamiento, por ejemplo.
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Definición del objetivo y del alcance</h2>
+    <p class="text-left text-pretty">
+      La <KeyWord>unidad funcional</KeyWord> del sistema se define como
+      <KeyWord>un metro cúbico en condiciones normales</KeyWord> de
+      <KeyWord>gas natural sintético</KeyWord> producido.
+    </p>
+  </Slide>
+  <Slide>
+    <h2>Análisis del inventario predictivo del ciclo de vida</h2>
+    <SpeakerNote>
+      La pimera étapa sería la simulación del proceso...
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Simulación del proceso</h3>
+    <Figure>
+      <img
+        class="rounded-xl ring-4 ring-[#011627]"
+        src="simulation1.webp"
+        alt="Simulación del proceso de metanación"
+      />
+      <Marker w={250} h={100} x={45} y={128} />
+      <Marker w={380} h={100} x={410} y={120} />
+      <Marker w={220} h={230} x={280} y={120} />
+      <Marker w={380} h={220} x={420} y={344} />
+    </Figure>
+    <SpeakerNote>
+      <p>
+        Diagrama de flujo de la simulación que representa el sistema de primer
+        plano que estamos analizando.
+      </p>
+      <ol>
+        <li>Corrientes de entrada: H2 de la electrólisis y CO2.</li>
+        <li>
+          El reactor principal se simula en 3 bloques. El primero es un bloque
+          RPLUG, en el que se incluye el modelo cinético 12 de Kopyscinski con
+          un mecanismo de reacción en 2 etapas. Siendo la primera la reacción de
+          intercambio de agua-gas, en la que el CO2 y el H2 reaccionan para
+          formar CO y H2O. En la segunda etapa, el CO y el H2 reaccionan para
+          formar metano. El segundo bloque es un reactor RGIBSS en el que los
+          gases resultantes siguen la reacción de Boudouard (2CO -> CO2 + C), de
+          este modo simulamos la formación de coke. El tercer bloque es un
+          separador en el que se retira el coke para simular su depósito en el
+          catalizador del reactor.
+        </li>
+        <li>
+          El calor del gas a la salida del reactor y el desprendido en la
+          reacción de metanación se utiliza para calentar el gas de entrada e
+          hibridizar el sistema con un ciclo de Rankyne para producir
+          electricidad.
+        </li>
+        <li>
+          Por último el gas natural sintético se prepara para su inyección en la
+          red. Para lo que tiene que secarse y eliminar el exceso de H2 y CO2.
+        </li>
+        <li>Dummy evaluar condiciones normales.</li>
+      </ol>
+      <p>
+        Una vez construida la simulación, vamos a ver su implementación en la
+        herramienta eco2des...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Simulación del proceso</h3>
+    <CodeSnippet content={snippets["create_project"]} />
+    <SpeakerNote>
+      <ol>
+        <li>Importamos la herramienta.</li>
+        <li>Creamos el proyecto.</li>
+        <li>Definimos sobre que proyecto estamos trabajando.</li>
+        <li>Y cargamos la simulación.</li>
+      </ol>
+      <p>
+        De este modo, tenemos la simulación lista para empezar a construir
+        nuestro inventario predictivo...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Inventario ambiental</h3>
+    <CodeSnippet content={snippets["create_lca_activity"]} />
+    <SpeakerNote>
+      <p>
+        Empecemos con el ambiental. eco2des permite linkar actividades del
+        modelo de ACV con valores extraidos directamente de la simulación.
+        Veamos como se llevaría a cabo.
+      </p>
+      <ol>
+        <li>
+          Creamos una nueva actividad que representa nuestro sistema de primer
+          plano. Se almacena en SQLite.
+        </li>
+        <li>
+          Para simplificar su acceso, creamos una variable que apunta a dicha
+          actividad.
+        </li>
+        <li>
+          Analogamente, hacemos lo mismo con la base de datos Ecoinvent 3.6 que
+          servirá para construir nuestro sistema de fondo.
+        </li>
+      </ol>
+      <p>
+        Con esto estariamos listos para construir el modelo de ACV. Primero,
+        veamos como incluir un input de la tecnosfera...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Inventario ambiental</h3>
+    <CodeSnippet content={snippets["add_technosphere_exchange"]} />
+    <SpeakerNote>
+      <ol>
+        <li>
+          Creamos una función que cuantifica el valor del input. Ésta es
+          evaluada en cada generación de inventario, por lo que cualquier cambio
+          en la simulación se ve reflejado en el inventario predictivo. En este
+          ejemplo, se crea una función para valorar la cantidad de electricidad
+          necesaria para producir el H2.
+        </li>
+        <li>Seleccionamos el proceso de ecoinvent que vamos a linkar.</li>
+        <li>
+          Creamos una nueva corriente en nuestro modelo. Y guardamos los cambios
+          en la base de datos.
+        </li>
+      </ol>
+      <p>
+        Este proceso se repite para cada una de las conexiones del modelo de ACV
+        con el sistema de fondo. Ahora, veamos un ejemplo de como añadir un
+        intercambio con la biosfera...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Inventario ambiental</h3>
+    <CodeSnippet content={snippets["add_biosphere_exchange"]} />
+    <SpeakerNote>
+      <ol>
+        <li>
+          Creamos una variable que apunta a la base de datos que continen la
+          lista de flujos con el medio ambiente.
+        </li>
+        <li>
+          Creamos la función que en este caso cuantifica la cantidad de CO2 que
+          emitimos.
+        </li>
+        <li>
+          Seleccionamos el flujo ambiental que vamos a conectar a nuestro
+          sistema.
+        </li>
+        <li>
+          Creamos una nueva corriente en nuestro modelo. Y guardamos los cambios
+          en la base de datos.
+        </li>
+      </ol>
+      <p>
+        Este proceso se repite para el resto de flujos ambientales al igual que
+        se hizo para los inputs de la tecnosfera. Con esto, tendríamos el
+        inventario ambiental listo para ser evaluado. Ahora, veamos como se
+        construye el inventario económico...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Inventario económico</h3>
+    <CodeSnippet content={snippets["add_scaled_equipment"]} />
+    <SpeakerNote>
+      <ol>
+        <li>
+          Accedemos al objeto CAPEX del proyecto. El CAPEX en eco2des se estima
+          con el metodo factorial detallado en la tesis a partir del coste de
+          los principales equipos. Veamos por ejemplo como se añade el coste del
+          electrolizador que se modela basado en datos de la literatura (NREL)
+          escalados en función de la capacidad del mismo.
+        </li>
+        <li>
+          Como antes, para crear un inventario responsivo definimos funciones
+          que computan los inputs necesarios. En este caso, la capacidad del
+          electrolizador.
+        </li>
+        <li>El coste se añade al objeto CAPEX.</li>
+      </ol>
+      <p>
+        El resto de equipos son incluidos en el modelos, de una forma similar.
+        Algunos en lugar de utilizar el método del escalado, usan correlaciones
+        directamente incluidas en la herramienta. Una vez construido el
+        inventario predictivo para el CAPEX, se hace la mismo para el OPEX...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Inventario económico</h3>
+    <CodeSnippet content={snippets["add_opex_costs"]} />
+    <SpeakerNote>
+      <ol>
+        <li>Extraemos el objeto OPEX.</li>
+        <li>Definimos el coste de los trabajadores.</li>
+        <li>Si existe definimos un préstamo.</li>
+        <li>Definimos el modelo de depreciación.</li>
+        <li>
+          Añadimos el coste de una materia prima del proceso. Definiendo una
+          función que extrae la cantidad de material.
+        </li>
+        <li>
+          Utilizamos el método del opex necesario para cuantificar el coste.
+        </li>
+      </ol>
+      <p>
+        El resto de costes de materias primas y servicios son incluidos en el
+        modelo analogamente. Y con esto, tendríamos el inventario predictivo
+        completo listo para ser evaluado...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Evaluación del impacto<br />del ciclo de vida</h2>
+    <CodeSnippet content={snippets["impact_assessment"]} />
+    <SpeakerNote>
+      <ol>
+        <li>Impacto ambiental.</li>
+        <li>Impacto económico.</li>
+      </ol>
+      <p>
+        Con esto tendríamos definida la fase de evaluación con los impactos
+        seleccionados para evaluar el rendimiento sostenible del sistema. Ahora,
+        pasemos a la siguiente fase, la optimización...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Optimización multiobjetivo</h2>
+    <MoopTable
+      objectiveFunctions={objectiveFunctions}
+      constraints={constraints}
+      decisionVariables={decisionVariables}
+      annotation={annotation}
+    />
+    <SpeakerNote>
+      <p>
+        Se definió un primer problema de optimización... Cuya solución indicaba
+        que los objetivos ambientales y económicos no eran conflictivos. Por lo
+        que un segundo problema de optimización fue definido...
+      </p>
+      <p>
+        Ambos problemas comparten las mismas restricciones y variables de
+        decisión. Para el primero se eligió el algoritmo MOEAD, y para el
+        segundo NSGA-II.
+      </p>
+      <p>
+        A modo ilustrativo, veamos como se implementa el primer problema en
+        eco2des...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Optimización multiobjetivo</h2>
+    <CodeSnippet content={snippets["define_optimization_objectives"]} />
+    <SpeakerNote>
+      <p>
+        Empezando por la implementación de los objetivos de la optimización.
+      </p>
+      <ol>
+        <li>
+          Se define una función que evalúa si se complen las restricciones.
+        </li>
+        <li>El primer objetivo es el cambio climático...</li>
+        <li>El segundo es el coste nivelado de producción...</li>
+        <li>
+          El tercero es la eficiencia de almacenamiento. Que vamos a ver paso a
+          pa so...
+        </li>
+      </ol>
+      <p>El siguiente paso sería definir las variables de decisión...</p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Optimización multiobjetivo</h2>
+    <CodeSnippet content={snippets["define_decision_variables"]} />
+    <SpeakerNote>
+      <p>
+        Estas funciones son especiales, toman como parámetro el valor de la
+        variable y devuelven ese mismo valor. Pero, al mismo tiempo, actualizan
+        la simulación con el valor de la variable. De este modo, la simulación
+        se modifica en cada generación de la optimización.
+      </p>
+      <ol>
+        <li>La primera es el ratio H2/CO2 de la reacción...</li>
+        <li>La temperatura del reactor...</li>
+        <li>La longitud...</li>
+        <li>El ratio longitud-diámetro...</li>
+        <li>El fluido de trabajo...</li>
+      </ol>
+      <p>
+        Por último, se define el problema de optimización y se resuelve.
+        Veámoslo...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Optimización multiobjetivo</h2>
+    <CodeSnippet content={snippets["define_optimization_problem"]} />
+    <SpeakerNote>
+      <ol>
+        <li>
+          Escogemos el algoritmo y el número de generaciones que vamos a
+          evolucionarlo.
+        </li>
+        <li>Definimos el problema...</li>
+        <li>Creamos una población inicial aleatoria ...</li>
+        <li>Evolucionamos dicha población...</li>
+      </ol>
+      <p>
+        Y ya estaría, en la variable evolved_population tendríamos la solución
+        al problema. El segundo problema se implementaría de forma similar. Así
+        que pasemos ahora a la fase de interpretación, vamos a visualizar la
+        solución y extraer algunas conclusiones...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Interpretación</h2>
+    <ThreeParetoFront
+      id={moop1.id}
+      objectives={moop1.data.objectives}
+      decisionVariables={moop1.data.decisionVariables}
+      x_index={1}
+      y_index={0}
+      z_index={2}
+    />
+    <SpeakerNote>
+      <p>
+        Ésta sería la frontera de Pareto del primer problema de optimización...
+      </p>
+      <p>
+        Algo interesante que podemos ver es que los objetivos ambientales y
+        económicos no son conflictivos...
+      </p>
+      <p>
+        Por ello se llevó a cabo el segundo problema con 2 objetivos: el coste
+        nivelado de producción y la eficiencia...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Interpretación</h2>
+    <TwoParetoFront
+      id={moop2.id}
+      objectives={moop2.data.objectives}
+      decisionVariables={moop2.data.decisionVariables}
+    />
+    <SpeakerNote>
+      <p>
+        Ésta sería la frontera de Pareto del segundo problema de optimización...
+      </p>
+      <p>Estos objetivos sí que son conflictivos...</p>
+      <p>El precio se dispara, centrémonos en la parte baja...</p>
+      <p>De hecho si volvemos a la vista general...</p>
+      <p>
+        Se concluye que para este problema tendría sentido minimizar únicamente
+        los costes o el impacto ambiental.
+      </p>
+      <p>
+        Otra observación es que el principal driver es el fluido de trabajo...
+      </p>
+      <p>Veamos las discusiones y conclusiones de este caso...</p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Interpretación</h2>
+    <p class="text-left text-pretty">
+      La metanación de dióxido de carbono para el almacenamiento de energía
+      eólica en la red de gas natural muestra un
+      <KeyWord>rendimiento ambiental y económico no conflictivo</KeyWord>.
+    </p>
+  </Slide>
+  <Slide>
+    <h2>Interpretación</h2>
+    <p class="text-left text-pretty">
+      Si queremos <KeyWord>maximizar la eficiencia</KeyWord>, se logra con un
+      ratio H<sub>2</sub>/CO<sub>2</sub> cercano a la relación estequiométrica de
+      4, una temperatura de 285 ⁰C, una longitud de reactor de 16.83 m y una relación
+      longitud-diámetro de 7.92. Uilizando ciclopentano como fluido de trabajo
+    </p>
+    <SpeakerNote>
+      <p>
+        Lo que aumenta la eficiencia del ciclo de Rankine a temperaturas más
+        bajas, incrementando el excedente eléctrico en la planta y, por ende, la
+        eficiencia de almacenamiento de la planta. Sin embargo, optar por un
+        reactor más grande y usar ciclohexano implica un aumento en el CAPEX y
+        OPEX del proceso, así como un incremento en el indicador de
+        calentamiento global, a pesar de producir más electricidad que disminuye
+        la contribución de la producción eólica; la contribución de las
+        actividades de la tecnosfera relacionadas con el uso del fluido de
+        trabajo es más alta y relevante en la evaluación de impacto final.
+      </p>
+      <p>
+        A pesar de los incrementos en eficiencia de almacenamiento, como hemos
+        dicho el incremento es minúsculo, siendo el mejor escenario en estos
+        términos solo un 1% superior al mejor escenario en términos económicos y
+        ambientales, pero con un LCOP 24 veces mayor y un GWP casi 2 veces
+        superior. Por tanto, se recomienda una optimización basada en un
+        rendimiento ambiental y económico no conflictivo,
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Interpretación</h2>
+    <p class="text-left text-pretty">
+      La <KeyWord>minimización de costes e impactos ambientales</KeyWord> obtiene
+      los siguientes objetivos:
+    </p>
+    <ul class="!list-none text-pretty text-3xl">
+      <li>
+        Coste nivelado de producción: 1.48 €/Nm<sup>3</sup>
+      </li>
+      <li>
+        Potencial de calentamiento global: 1.09 kg CO<sub>2</sub>-eq./Nm<sup
+          >3</sup
+        >
+      </li>
+      <li>Eficiencia de almacenamiento: 57.95 %</li>
+    </ul>
+    <p class="text-left text-pretty">
+      Con las siguientes variables de decisión:
+    </p>
+    <ul class="!list-none text-pretty text-3xl">
+      <li>
+        H<sub>2</sub>/CO<sub>2</sub> ratio: 4.44
+      </li>
+      <li>Temperatura del reactor: 396 ⁰C</li>
+      <li>Longitud del reactor: 2.64 m</li>
+      <li>LD ratio del reactor: 5.72</li>
+      <li>Fluido de trabajo: agua</li>
+      <SpeakerNote> Hablar del inusual 5.72 </SpeakerNote>
+    </ul>
+  </Slide>
+</Slide>

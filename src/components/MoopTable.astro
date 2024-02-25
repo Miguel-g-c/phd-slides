@@ -1,0 +1,81 @@
+---
+import KeyWord from "./KeyWord.astro";
+
+interface ObjectiveFunction {
+  name: string;
+  value: string;
+}
+
+interface Constraint {
+  name: string;
+  value: string;
+}
+
+interface DecisionVariable {
+  name: string;
+  lowerLimit: number;
+  upperLimit: number;
+}
+
+interface Props {
+  objectiveFunctions: ObjectiveFunction[];
+  constraints: Constraint[];
+  decisionVariables: DecisionVariable[];
+  annotation?: string;
+}
+
+const { objectiveFunctions, constraints, decisionVariables, annotation } =
+  Astro.props;
+---
+
+<table class="text-sm max-h-[60vh] w-[80%] bg-[#011627]/60">
+  <caption class="caption-bottom text-xs pt-1" set:html={annotation} />
+  <thead>
+    <tr>
+      <th class="text-base !py-1 bg-[#011627]/90" colspan="3">
+        <KeyWord>Funciones objetivo</KeyWord>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      objectiveFunctions.map((objectiveFunction) => (
+        <tr>
+          <td set:html={objectiveFunction.name} />
+          <td
+            colspan="2"
+            class="!text-center"
+            set:html={objectiveFunction.value}
+          />
+        </tr>
+      ))
+    }
+    <tr>
+      <td class="text-base !py-1 bg-[#011627]/90" colspan="3">
+        <KeyWord>Sujeto a</KeyWord>
+      </td>
+    </tr>
+    {
+      constraints.map((constraint) => (
+        <tr>
+          <td set:html={constraint.name} />
+          <td colspan="2" class="!text-center" set:html={constraint.value} />
+        </tr>
+      ))
+    }
+    <tr class="!py-1 bg-[#011627]/90">
+      <td class="text-base"><KeyWord>Variables de decisión</KeyWord></td>
+      <td><KeyWord>Límite inferior</KeyWord></td>
+      <td><KeyWord>Límite superior</KeyWord></td>
+    </tr>
+    {
+      decisionVariables.map((decisionVariable) => (
+        <tr>
+          <td set:html={decisionVariable.name} />
+          <td class="!text-center">{decisionVariable.lowerLimit}</td>
+          <td class="!text-center">{decisionVariable.upperLimit}</td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>

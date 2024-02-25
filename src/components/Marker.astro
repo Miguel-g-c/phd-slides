@@ -1,0 +1,29 @@
+---
+interface Props {
+  w: number;
+  h: number;
+  x?: number;
+  y?: number;
+}
+
+const { w, h, x = 0, y = 0 } = Astro.props;
+
+const xPx = x + "px";
+const yPx = y + "px";
+const wPx = w + "px";
+const hPx = h + "px";
+---
+
+<div
+  class=`fragment fade-in-then-out absolute rounded-sm ring-2 ring-[#83b833]`
+>
+</div>
+
+<style define:vars={{ xPx, yPx, wPx, hPx }}>
+  div {
+    left: var(--xPx);
+    bottom: var(--yPx);
+    width: var(--wPx);
+    height: var(--hPx);
+  }
+</style>

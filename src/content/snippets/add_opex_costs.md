@@ -21,7 +21,7 @@ def lcc_co2():
     co2_rec = e2d.project.simulation.streams["C02-REC"]
     co2_rec_mass_flow, _ = co2_rec.output.total_mass_flow()
     co2_mass_flow = co2_in_mass_flow - co2_rec_mass_flow
-    f = e2d.project.capacity_Factor()
+    f = e2d.project.capacity_factor()
     return co2_mass_flow / 1000 * f * 8760
 
 
