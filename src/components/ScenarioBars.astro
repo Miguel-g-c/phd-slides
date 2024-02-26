@@ -131,7 +131,7 @@ const normalizedObjectives = {
         let objectivePos = this.objectives.displayNames.indexOf(objective);
 
         data.points[0].fullData.hovertemplate =
-          "<b>Decision variables</b><br>" +
+          "<b>Variables de decisión</b><br>" +
           `${this.renderDecisionVariables(scenarioPos)}` +
           `${this.renderObjective(scenarioPos, objectivePos)}` +
           "<extra></extra>";
@@ -159,8 +159,8 @@ const normalizedObjectives = {
       let relativeDiff = relativeValue - 100;
       return (
         `<br><b>${name}</b><br>` +
-        `Value: ${value.toFixed(3)} ${unit}<br>` +
-        `Relative diff: ${relativeDiff.toFixed(2)} %<br>`
+        `Valor: ${value.toFixed(3)} ${unit}<br>` +
+        `Diferencia relativa: ${relativeDiff.toFixed(2)} %<br>`
       );
     }
   }
