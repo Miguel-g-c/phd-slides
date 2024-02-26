@@ -1,0 +1,534 @@
+---
+import Figure from "../components/Figure.astro";
+import Marker from "../components/Marker.astro";
+import MoopTable from "../components/MoopTable.astro";
+import KeyWord from "../components/KeyWord.astro";
+import ScenarioBars from "../components/ScenarioBars.astro";
+import Slide from "../components/Slide.astro";
+import SpeakerNote from "../components/SpeakerNote.astro";
+import ThreeParetoFront from "../components/ThreeParetoFront.astro";
+import TwoParetoFront from "../components/TwoParetoFront.astro";
+
+import { getEntry } from "astro:content";
+
+const moop1 = await getEntry("moops", "case2/moop1");
+const moop2 = await getEntry("moops", "case2/moop2");
+const scenarios = await getEntry("moops", "case2/moop3");
+const scenarioNames = [
+  "Reference case",
+  "Scenario 1",
+  "Scenario 2",
+  "Scenario 3",
+  "Scenario 4",
+];
+const colors = ["#5ca7e4", "#addb67", "#c792ea", "#F78C6C", "#ecc48d"];
+
+const objectiveFunctions = [
+  {
+    name: "MOOP1",
+    value: "min(GWP, -VAN)",
+  },
+  {
+    name: "MOOP2",
+    value: "min(GWP, -VAN, -Queroseno)",
+  },
+];
+
+const decisionVariables = [
+  {
+    name: "Temperatura de gasificación",
+    lowerLimit: "700 ⁰C",
+    upperLimit: "900 ⁰C",
+  },
+  {
+    name: "Ratio vapor/biomasa",
+    lowerLimit: 0,
+    upperLimit: 1.5,
+  },
+  {
+    name: "Temperatura de FT",
+    lowerLimit: "200 ⁰C",
+    upperLimit: "250 ⁰C",
+  },
+  {
+    name: "GHSV",
+    lowerLimit: "1000 cm<sup>3</sup>/h/g<sub>catalizador</sub>",
+    upperLimit: "6000 cm<sup>3</sup>/h/g<sub>catalizador</sub>",
+  },
+  {
+    name: "Ratio H<sub>2</sub>/CO",
+    lowerLimit: 1.5,
+    upperLimit: 2.5,
+  },
+];
+
+const annotation = `
+GWP: potencial de calentamiento global; VAN: valor actual neto; 
+FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
+`;
+---
+
+<Slide>
+  <Slide>
+    <h2>Contexto</h2>
+    <p class="text-left text-pretty">
+      Para 2030, la <KeyWord>Unión Europea (UE)</KeyWord> tiene como objetivo que
+      el <KeyWord>14 %</KeyWord> del
+      <KeyWord>combustible de transportes</KeyWord> de cada país miembro provenga
+      de <KeyWord>fuentes renovables</KeyWord>.
+    </p>
+    <SpeakerNote>
+      Con un objetivo específico para los biocombustibles avanzados producidos a
+      partir de materias primas como algas, biodesechos, biomasa o estiércol,
+      contribuyendo al menos un 1% en 2025 y un 3.5% en 2030.
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Contexto</h2>
+    <p class="text-left text-pretty">
+      Existe una preocupación especial por los
+      <KeyWord>combustibles para aviación</KeyWord>, ya que ésta es responsable
+      del <KeyWord>3 %</KeyWord> de las emisiones totales de
+      <KeyWord>gases de efecto invernadero</KeyWord>. Por ello, la
+      <KeyWord>UE</KeyWord> ha establecido un objetivo para combustibles de aviación
+      sostenibles, representando hasta el <KeyWord>5.25 % de la demanda</KeyWord
+      >.
+    </p>
+  </Slide>
+  <Slide>
+    <h2>Contexto</h2>
+    <p class="text-left text-pretty">
+      La síntesis de <KeyWord>Fischer-Tropsch (FT)</KeyWord> integrada con la
+      <KeyWord>gasificación</KeyWord> es una ruta prometedora para la conversión
+      de biomasa en combustibles para aviación.
+    </p>
+    <SpeakerNote>
+      <p>Ofreciendo ventajas como:</p>
+      <ul>
+        <li>
+          No necesitar captura y almacenamiento de CO2 por su naturaleza
+          biogénica.
+        </li>
+        <li>
+          Características similares a los combustibles derivados del petróleo.
+        </li>
+        <li>Contenido casi nulo de azufre.</li>
+        <li>
+          compatibilidad con la infraestructura existente para transporte,
+          almacenamiento y motores de combustión.
+        </li>
+      </ul>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Contexto</h2>
+    <p class="text-left text-pretty">
+      Sin embargo, a pesar de tener un potencial de
+      <KeyWord>calentamiento global</KeyWord> un <KeyWord>70 % menor</KeyWord> que
+      los combustibles fósiles, el mayor obstáculo para la adopción de estos biocombustibles
+      es su <KeyWord>alto coste de capital</KeyWord>.
+    </p>
+    <SpeakerNote>
+      Por ello, creemos que es importante aplicar la metodología de ecodiseño en
+      el desarrollo sostenible de estas tecnologías emergentes. Vamos a ello...
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Definición del objetivo y del alcance</h2>
+    <p class="text-left text-pretty">
+      <KeyWord>Optimizar</KeyWord> el diseño de la
+      <KeyWord>biorrefinería</KeyWord> para la coproducción de biocombustibles y
+      electricidad, utilizando un perspectiva del ciclo de vida,
+      <KeyWord>minimizando impactos ambientales y costes</KeyWord>, y
+      <KeyWord>maximizando la producción de bioqueroseno</KeyWord>.
+    </p>
+    <SpeakerNote>
+      <p>El objetivo del estudio es...</p>
+      <p>
+        Para el estudio ambiental se ha seleccionado la base de datos ecoinvent
+        3.6 modelo Cut-Off como sistema de fondo, y se han elegido las
+        categorías de calentamiento global y agotamiento de combustibles fósiles
+        para medir el impacto ambiental del proceso.
+      </p>
+      <p>
+        Por otro lado, en el aspecto económico, el rendimiento se mide a través
+        del valor actual neto del proyecto.
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Definición del objetivo y del alcance</h2>
+    <p class="text-left text-pretty">
+      Los <KeyWord>límites del sistema</KeyWord> se establecen de
+      <KeyWord>cuna a puerta</KeyWord>, abarcando desde la captación de biomasa
+      y otras materias primas y servicios hasta la producción de los
+      biocombustibles en una planta que trata 2800 tpd.
+    </p>
+    <SpeakerNote>
+      Este alcance es suficiente para la optimización, ya que el proceso se
+      compara con otras variantes de él mismo.
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Definición del objetivo y del alcance</h2>
+    <p class="text-left text-pretty">
+      La <KeyWord>unidad funcional</KeyWord> del sistema se define como
+      <KeyWord>1 kWh</KeyWord> de <KeyWord>biocombustibles</KeyWord> producidos.
+    </p>
+    <SpeakerNote>
+      H2, gasolina, queroseno y diesel. Utiliando el valor calorífico inferior.
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Análisis del inventario predictivo del ciclo de vida</h2>
+    <SpeakerNote>
+      Como antes, la pimera étapa sería la simulación del proceso...
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Simulación del proceso</h3>
+    <Figure>
+      <img
+        class="rounded-xl ring-4 ring-[#011627]"
+        src="simulation2.webp"
+        alt="Simulación de la biorrefinería para la coproducción de biocombustibles y electricidad"
+      />
+      <Marker w={85} h={85} x={101} y={177} />
+      <Marker w={56} h={56} x={130} y={305} />
+      <Marker w={85} h={85} x={101} y={177} />
+      <Marker w={61} h={61} x={237} y={189} />
+      <Marker w={55} h={55} x={335} y={277} />
+      <Marker w={49} h={49} x={427} y={195} />
+      <Marker w={55} h={55} x={506} y={192} />
+      <Marker w={168} h={56} x={704} y={283} />
+      <Marker w={176} h={176} x={647} y={99} />
+      <Marker w={55} h={55} x={187} y={61} />
+    </Figure>
+    <SpeakerNote>
+      <p>
+        La figura ilustra de forma esquemática los principales pasos
+        involucrados en la producción de combustibles y electricidad, destacando
+        las siguientes unidades: ASU (unidad de separación de aire, air
+        separation unit), WGS (reactor de desplazamiento agua-gas, water gas
+        shift), AGR (eliminación de gases ácidos, acid gas removal), FT
+        (síntesis Fischer-Tropsch), PSA (unidad de adsorción por cambio de
+        presión, pressure swing adsorption), ATR (reactor de reformado
+        autotérmico, autothermal reforming), CHP (planta de generación
+        eléctrica, combined heat and power) y HC (unidad de hidrocracking).
+      </p>
+      <ol>
+        <li>
+          En este caso utilizamos una biomasa proveniente del maiz, pero el
+          modelo funciona con cualquier compuesto no convencional que pueda
+          definirse a través de su análisis último y próximo.
+        </li>
+        <li>
+          En el bloque de gasificación, la biomasa es triturada, secada con aire
+          e inyectada al gasificador junto con oxígeno de alta pureza
+          proveniente de la unidad de separamiento de aire y vapor de agua. El
+          gasificador se modela en 2 etapas: la primera etapa es un
+          descomposición teórica de la biomasa en sus componentes básicos, y la
+          segunda etapa es la reacción de los componentes básicos, y en la
+          segunda etapa se asume el equilibrio químico a 25 bares. La
+          temperatura y la cantidad de vapor son variables de decisión.
+        </li>
+        <li>
+          El gas de síntesis puede contener diversas impurezas como sulfuros,
+          amoniaco, ácido clorhídrico, y otros compuestos orgánicos. Estos
+          compuestos son eliminados en una limpieza en frío mediante agua, oxido
+          de zinc para el azufre si su contenido es mayor de 50 ppm. Ya que la
+          optimización no se centra en esta etápa, la limpieza se incluye en
+          Aspen como separadores teóricos modelando el consumo de recursos para
+          reactivar la cama de óxido de zinc o neutralizar el agua.
+        </li>
+        <li>
+          El ratio de H2/CO para la síntesis FT es un parámetro de diseño que se
+          ajusta en un reactor de desplazamiento agua-gas: CO + H2O → CO2 + H2.
+          Con un design spec se ajusta la cantidad de syngas que tiene que ir a
+          este proceso para obtener el ratio deseado. En Aspen se modela con un
+          reactor de Gibbs adiabático con el equilibrio restringido a la
+          reacción de desplazamiento agua-gas.
+        </li>
+        <li>
+          El gas de síntesis contiene también una gran cantidad de CO2 que
+          disminuye el rendimiento del FT. Por ello es eliminado en el reactor
+          AGR (eliminación de gases ácidos), en este caso se modela un proceso
+          Rectisol en el que se elimina un 97% del CO2. Los servicios necesarios
+          para su operación se extraen de la literatura y se introducen al
+          modelo como correlaciones.
+        </li>
+        <li>
+          La síntesis FT implementada en este proceso es la de baja temperatura,
+          operando entre 200 y 250 ⁰C. El reactor se modela como un reactor de
+          columna de burbujas introduciendo un modelo cinético junto a un modelo
+          probabilístico de distribución para los diferentes hidrocarburos hasta
+          C28. Sus principales parámetros son el ratio H2/CO, la velocidad
+          espacial del gas sobre el catalizador (GHSV), la temperatura y la
+          cantidad compuestos inertes. Todo ello se introduce en la simulación
+          mediante un calculator.
+        </li>
+        <li>
+          El gas de cola de la destilación contiene una gran cantidad de H2 e
+          hidrocarburos ligeros. El bloque PSA, unidad de adsorción por cambio
+          de presión, es utilizado para recuperar el H2 que es utilizado en los
+          procesos de mejora (hidrocrackeo, tratamiento hidrotérmico e
+          isomerización) y en ajustar el ratio H2/CO para el gas recirculado
+          proveniente del ATR (reactor de reformado autotérmico). El modelo es
+          capaz de calcular si hay excedente de H2 o si se necesita extra. En el
+          ATR, se modela la reacción endotérmica de oxidación parcial y de
+          desplazamiento de agua-gas, en las que los hidrocarburos ligeros
+          reacionan con vapor de agua y se convierten en H2 y CO que es
+          recirculado a la síntesis de FT. Este reactor se modela en Aspen
+          minimizando la energía libre de Gibss a 900 C en un entorno
+          adiabático.
+        </li>
+        <li>
+          La parte de mejora de los biocombustibles incluye la destilación,
+          hidrotratamiento, reformado catalítico, isomerización e hidrocraqueo.
+          Todos estos procesos son análogos a los utilizados en refinerías
+          convencionales, los cuales están bien asentados por lo que no se
+          simulan en detalle, incluyendo cajas negras con correlaciones para
+          cuantificar los diferentes servicios consumidos.
+        </li>
+        <li>
+          Finalmente, todo el calor producido en la biorrefinería, representado
+          por las líneas de puntos en el diagrama, es recuperado para producit
+          vapor de alta y media presión. El vapor que no es consumido en el
+          proceso, se utiliza para producir electricidad.
+        </li>
+      </ol>
+      <p>
+        Una vez construida la simulación, vamos a ver su implementación en la
+        herramienta eco2des...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h3>Inventario ambiental</h3>
+    <h3>Inventario económico</h3>
+    <SpeakerNote>
+      <p>
+        Con la simulación completada, se emplea eco2des para construir el
+        inventario predictivo que vincula los resultados de la simulación con
+        los modelos de análisis del ciclo de vida (ACV) y análisis de costes del
+        ciclo de vida (ACCV), tal y como vimos en el anterior caso de estudio.
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Evaluación del impacto<br />del ciclo de vida</h2>
+    <p class="text-left text-pretty">
+      Se evalúan dos categorías de <KeyWord>impacto ambiental</KeyWord>: el
+      <KeyWord>calentamiento global</KeyWord> y el
+      <KeyWord>agotamiento de recursos fósiles</KeyWord>.
+    </p>
+    <SpeakerNote>
+      La primera se calculó utilizando los potenciales de calentamiento global
+      del método IPCC 2013 a 100 años sin emisiones a largo plazo, y la segunda
+      se calculó utilizando el método ReCiPe Midpoint (H) v1.13.
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Evaluación del impacto<br />del ciclo de vida</h2>
+    <p class="text-left text-pretty">
+      Para la evaluación del <KeyWord>impacto económico</KeyWord>, se calcula el
+      <KeyWord>valor actual neto (VAN)</KeyWord> con una tasa de interés nominal
+      del 5 %.
+    </p>
+    <SpeakerNote>
+      Siguiendo las recomendaciones de la ISO 15663: Petroleum, Petrochemical
+      and Natural Gas Industries — Life Cycle Costing.
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Optimización multiobjetivo</h2>
+    <MoopTable
+      objectiveFunctions={objectiveFunctions}
+      decisionVariables={decisionVariables}
+      annotation={annotation}
+    />
+    <SpeakerNote>
+      <p>
+        En este estudio se proponen dos problemas, el primer problema se centra
+        en la optimización de los indicadores de sostenibilidad (el agotamiento
+        de recursos fósiles es excluido ya que en análisis de sensibilidad y
+        durante los primeros problemas de optimización definidos, recordemos que
+        la metodología es un proceso iterativo, se identificó que tenía un
+        comportamiento no conflictivo con el GWP). Mientras que el segundo
+        incluye, adicionalmente, la maximización de la producción de queroseno,
+        ya que como vimos en el contexto es un producto crucial para lograr los
+        objetivos de la UE en materia de transición hacia biocombustibles.
+      </p>
+      <p>
+        Ambos problemas comparten las mismas variables de decisión... El MOOP1
+        se abordó utilizando el algoritmo genético de ordenación no dominada II
+        (NSGA-II), mientras que para el MOOP2 se empleó el algoritmo evolutivo
+        multiobjetivo con descomposición (MOEA/D).
+      </p>
+      <p>
+        Con los problemas definidos y resueltos en eco2des. Podemos pasar a la
+        fase de interpretación...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Interpretación</h2>
+    <TwoParetoFront
+      id={moop1.id}
+      objectives={moop1.data.objectives}
+      decisionVariables={moop1.data.decisionVariables}
+    />
+    <SpeakerNote>
+      <p>
+        La optimización realizada en el MOOP1 expone una frontera de Pareto con
+        una forma sigmoidal característica (ilustrada en la Figura 18), donde se
+        observa la presencia de metas en conflicto con valores positivos y
+        negativos de la huella de carbono del proceso, determinados
+        principalmente por la producción de electricidad en la planta...
+      </p>
+      <p>
+        Pero eso es conflictivo con el VAN. Por otro lado, se obtiene un VAN más
+        elevado al reducir la producción excedente de electricidad, lo que
+        conlleva a una conversión más eficiente de la biomasa en
+        biocombustibles...
+      </p>
+      <p>
+        En concreto el H2, que en el momento del análisis tenía el precio más
+        elevado, y por ende para maximizar el VAN la herramienta tiende a un
+        diseńo en el que la producción de este gas es la maxima posible.
+      </p>
+      <p>
+        Por ejemplo, los valores de GHSV más elevados mejoran el VAN mediante un
+        incremento en la producción de hidrocarburos más ligeros e hidrógeno, ya
+        que se consume menos en procesos como el hidrocrackeo. Los valores más
+        bajos favorecen la producción de electricidad, ya que hidrocarburos más
+        pesado son producidos y por tanto más ceras son quemadas para proudcir
+        electricidad.
+      </p>
+      <p>
+        Del mismo modo, ratios H2/CO más elevados por encima del valor
+        estequiométrico favorecen la producción extra de H2.
+      </p>
+      <p>Veamos ahora los resultados del segundo problema...</p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Interpretación</h2>
+    <ThreeParetoFront
+      id={moop2.id}
+      objectives={moop2.data.objectives}
+      decisionVariables={moop2.data.decisionVariables}
+      x_index={0}
+      y_index={2}
+      z_index={1}
+    />
+    <SpeakerNote>
+      <p>
+        Ésta sería la frontera de Pareto del segundo problema de optimización,
+        valores por encima mejore, por debajo del plano subóptimos...
+      </p>
+      <p>
+        Comparar con el caso de estudio anterior, en éste el tercer objetivo es
+        conflictivo...
+      </p>
+      <p>
+        La producción de queroseno está fuertemente influenciada por el GHSV,
+        donde valores inferiores maximizan su producción, pero reducen la
+        eficiencia económica de la biorrefinería debido al mayor consumo de
+        hidrógeno necesario para el hidrocracking de las ceras.
+      </p>
+      <p>
+        La relación de vapor a biomasa y la relación H2/CO impactan en menor
+        medida la producción de queroseno. Sin embargo, la relación óptima
+        vapor-biomasa para maximizar la producción de queroseno se sitúa entre
+        0,1 y 0,6, y una relación H2/CO cercana al valor estequiométrico de 2
+        favorece la maximización de este combustible.
+      </p>
+      <p>
+        Además de estos problemas de optimización se realizó una comparación con
+        un caso de referencia tomado de la literatura...
+      </p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Interpretación</h2>
+    <ScenarioBars
+      id={scenarios.id}
+      objectives={scenarios.data.objectives}
+      decisionVariables={scenarios.data.decisionVariables}
+      scenarioNames={scenarioNames}
+      colors={colors}
+    />
+    <SpeakerNote>
+      <p>Ver variables y resultados del caso de referencia...</p>
+      <p>Los distintos escenarios son:</p>
+      <ol>
+        <li>Maximiza el VAN.</li>
+        <li>Minimiza el GWP manteniendo el VAN mayor que 0.</li>
+        <li>
+          Maximiza la producción de queroseno con la misma restricción de VAN.
+        </li>
+        <li>
+          En el punto medio está la virtud. En la que el VAN es del torno de los
+          50 M€ minimizando impactos ambientales y con la máxima producción de
+          queroseno posible.
+        </li>
+      </ol>
+      <p>Comparar cada escenario con el caso de referencia...</p>
+      <p>Veamos ahora las conclusiones más relevantes del estudio...</p>
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Interpretación</h2>
+    <p class="text-left text-pretty">
+      La <KeyWord>coproducción</KeyWord> de <KeyWord>hidrógeno</KeyWord>,
+      <KeyWord>biocombustibles líquidos</KeyWord> y
+      <KeyWord>electricidad</KeyWord> suficiente para
+      <KeyWord>autoabastecer</KeyWord> al proceso puede ser una estrategia viable
+      para <KeyWord>mejorar el desempeño económico y ambiental</KeyWord>, a
+      pesar de que podría implicar una <KeyWord>disminución</KeyWord> en la producción
+      de <KeyWord>queroseno</KeyWord>.
+    </p>
+  </Slide>
+  <Slide>
+    <h2>Interpretación</h2>
+    <p class="text-left text-pretty">
+      La <KeyWord>naturaleza y cantidad de subproductos</KeyWord> generados por la
+      biorrefinería <KeyWord>influyen</KeyWord> considerablemente en su
+      <KeyWord>rendimiento</KeyWord>, siendo el
+      <KeyWord>precio de mercado</KeyWord> de los mismos un actor determinante
+    </p>
+    <SpeakerNote>
+      Por eso hemos visto que en las condiciones que se hizo el estudio, el
+      modelo tiende a producir mas H2.
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Interpretación</h2>
+    <p class="text-left text-pretty">
+      Hay una tendencia a <KeyWord>reducir la producción de queroseno</KeyWord> en
+      los problemas de optimización.
+    </p>
+    <SpeakerNote>
+      Probablemente debido a su menor valor de mercado en comparación con el
+      hidrógeno y a la menor producción de electricidad lo que aumenta la huella
+      de carbono.
+    </SpeakerNote>
+  </Slide>
+  <Slide>
+    <h2>Interpretación</h2>
+    <p class="text-left text-pretty">
+      La apliación de la <KeyWord>metodología</KeyWord> y la
+      <KeyWord>herramienta</KeyWord> de ecodiseño <KeyWord>facilita</KeyWord> la
+      configuración de <KeyWord>escenarios sostenibles</KeyWord>, gracias a la
+      generación de soluciones óptimas a través de algoritmos genéticos.
+    </p>
+    <SpeakerNote>
+      En definiva, estos hallazgos subrayan la complejidad de balancear las
+      metas de sostenibilidad en el diseño y operación de biorrefinerías. La
+      capacidad de herramientas como eco2des para predecir y reconciliar estos
+      conflictos es crucial para el desarrollo de tecnologías que sean tanto
+      económicamente viables como ambientalmente responsables.
+    </SpeakerNote>
+  </Slide>
+</Slide>

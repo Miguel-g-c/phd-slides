@@ -13,13 +13,13 @@ interface Constraint {
 
 interface DecisionVariable {
   name: string;
-  lowerLimit: number;
-  upperLimit: number;
+  lowerLimit: number | string;
+  upperLimit: number | string;
 }
 
 interface Props {
   objectiveFunctions: ObjectiveFunction[];
-  constraints: Constraint[];
+  constraints?: Constraint[];
   decisionVariables: DecisionVariable[];
   annotation?: string;
 }
@@ -50,13 +50,17 @@ const { objectiveFunctions, constraints, decisionVariables, annotation } =
         </tr>
       ))
     }
-    <tr>
-      <td class="text-base !py-1 bg-[#011627]/90" colspan="3">
-        <KeyWord>Sujeto a</KeyWord>
-      </td>
-    </tr>
     {
-      constraints.map((constraint) => (
+      constraints && (
+        <tr>
+          <td class="text-base !py-1 bg-[#011627]/90" colspan="3">
+            <KeyWord>Sujeto a</KeyWord>
+          </td>
+        </tr>
+      )
+    }
+    {
+      constraints?.map((constraint) => (
         <tr>
           <td set:html={constraint.name} />
           <td colspan="2" class="!text-center" set:html={constraint.value} />
@@ -72,8 +76,8 @@ const { objectiveFunctions, constraints, decisionVariables, annotation } =
       decisionVariables.map((decisionVariable) => (
         <tr>
           <td set:html={decisionVariable.name} />
-          <td class="!text-center">{decisionVariable.lowerLimit}</td>
-          <td class="!text-center">{decisionVariable.upperLimit}</td>
+          <td class="!text-center" set:html={decisionVariable.lowerLimit} />
+          <td class="!text-center" set:html={decisionVariable.upperLimit} />
         </tr>
       ))
     }
