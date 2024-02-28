@@ -5,7 +5,7 @@ import DeckIndex from "../components/DeckIndex.astro";
 import Slide from "../components/Slide.astro";
 import SpeakerNote from "../components/SpeakerNote.astro";
 
-import Portrait from "../slides/Portrait.astro";
+import Cover from "../slides/Cover.astro";
 import Motivation from "../slides/Motivation.astro";
 import Objectives from "../slides/Objectives.astro";
 import StateOfTheArt from "../slides/StateOfTheArt.astro";
@@ -13,6 +13,8 @@ import Methodology from "../slides/Methodology.astro";
 import Tool from "../slides/Tool.astro";
 import CaseStudy1 from "../slides/CaseStudy1.astro";
 import CaseStudy2 from "../slides/CaseStudy2.astro";
+import Conclusions from "../slides/Conclusions.astro";
+import BackCover from "../slides/BackCover.astro";
 ---
 
 <Layout
@@ -20,7 +22,7 @@ import CaseStudy2 from "../slides/CaseStudy2.astro";
   description="Sitio web de la defensa de doctorado para 'Una Nueva Herramienta Integrada y Holística para el Eco-Diseño de Procesos Industriales' por Miguel García Casas. Éste presenta una investigación que integra la simulación de procesos, el análisis del ciclo de vida (ACV) y el coste del ciclo de vida (ACCV) para la optimización basada en la sostenibilidad de los procesos industriales."
   author="Miguel García Casas"
 >
-  <Portrait />
+  <Cover />
   <Slide>
     <DeckIndex animate />
   </Slide>
@@ -78,4 +80,9 @@ import CaseStudy2 from "../slides/CaseStudy2.astro";
     </SpeakerNote>
   </Slide>
   <CaseStudy2 />
+  <Slide>
+    <DeckIndex active="7" />
+  </Slide>
+  <Conclusions />
+  <BackCover />
 </Layout>
