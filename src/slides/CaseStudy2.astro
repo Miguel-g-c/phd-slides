@@ -194,8 +194,6 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
         alt="Simulación de la biorrefinería para la coproducción de biocombustibles y electricidad"
       />
       <Marker w={85} h={85} x={101} y={177} />
-      <Marker w={56} h={56} x={130} y={305} />
-      <Marker w={85} h={85} x={101} y={177} />
       <Marker w={61} h={61} x={237} y={189} />
       <Marker w={55} h={55} x={335} y={277} />
       <Marker w={49} h={49} x={427} y={195} />
@@ -225,37 +223,25 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
         <li>
           En el bloque de gasificación, la biomasa es triturada, secada con aire
           e inyectada al gasificador junto con oxígeno de alta pureza
-          proveniente de la unidad de separamiento de aire y vapor de agua. El
-          gasificador se modela en 2 etapas: la primera etapa es un
-          descomposición teórica de la biomasa en sus componentes básicos, y la
-          segunda etapa es la reacción de los componentes básicos, y en la
-          segunda etapa se asume el equilibrio químico a 25 bares. La
+          proveniente de la unidad de separamiento de aire y vapor de agua. La
           temperatura y la cantidad de vapor son variables de decisión.
         </li>
         <li>
           El gas de síntesis puede contener diversas impurezas como sulfuros,
           amoniaco, ácido clorhídrico, y otros compuestos orgánicos. Estos
-          compuestos son eliminados en una limpieza en frío mediante agua, oxido
-          de zinc para el azufre si su contenido es mayor de 50 ppm. Ya que la
-          optimización no se centra en esta etápa, la limpieza se incluye en
-          Aspen como separadores teóricos modelando el consumo de recursos para
-          reactivar la cama de óxido de zinc o neutralizar el agua.
+          compuestos son eliminados en una limpieza en frío.
         </li>
         <li>
           El ratio de H2/CO para la síntesis FT es un parámetro de diseño que se
           ajusta en un reactor de desplazamiento agua-gas: CO + H2O → CO2 + H2.
           Con un design spec se ajusta la cantidad de syngas que tiene que ir a
-          este proceso para obtener el ratio deseado. En Aspen se modela con un
-          reactor de Gibbs adiabático con el equilibrio restringido a la
-          reacción de desplazamiento agua-gas.
+          este proceso para obtener el ratio deseado.
         </li>
         <li>
           El gas de síntesis contiene también una gran cantidad de CO2 que
           disminuye el rendimiento del FT. Por ello es eliminado en el reactor
           AGR (eliminación de gases ácidos), en este caso se modela un proceso
-          Rectisol en el que se elimina un 97% del CO2. Los servicios necesarios
-          para su operación se extraen de la literatura y se introducen al
-          modelo como correlaciones.
+          Rectisol en el que se elimina un 97% del CO2.
         </li>
         <li>
           La síntesis FT implementada en este proceso es la de baja temperatura,
@@ -273,14 +259,9 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
           de presión, es utilizado para recuperar el H2 que es utilizado en los
           procesos de mejora (hidrocrackeo, tratamiento hidrotérmico e
           isomerización) y en ajustar el ratio H2/CO para el gas recirculado
-          proveniente del ATR (reactor de reformado autotérmico). El modelo es
-          capaz de calcular si hay excedente de H2 o si se necesita extra. En el
-          ATR, se modela la reacción endotérmica de oxidación parcial y de
-          desplazamiento de agua-gas, en las que los hidrocarburos ligeros
-          reacionan con vapor de agua y se convierten en H2 y CO que es
-          recirculado a la síntesis de FT. Este reactor se modela en Aspen
-          minimizando la energía libre de Gibss a 900 C en un entorno
-          adiabático.
+          proveniente del ATR (reactor de reformado autotérmico), donde los
+          hidrocarburos ligeros reacionan con vapor de agua y se convierten en
+          H2 y CO que es recirculado a la síntesis de FT.
         </li>
         <li>
           La parte de mejora de los biocombustibles incluye la destilación,
@@ -301,6 +282,39 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
         Una vez construida la simulación, vamos a ver su implementación en la
         herramienta eco2des...
       </p>
+      <p>Extra info:</p>
+      <ol>
+        <li>
+          Gasificador: El gasificador se modela en 2 etapas: la primera etapa es
+          un descomposición teórica de la biomasa en sus componentes básicos, y
+          la segunda etapa es la reacción de los componentes básicos, y en la
+          segunda etapa se asume el equilibrio químico a 25 bares.
+        </li>
+        <li>
+          Limpieza: Mediante agua, oxido de zinc para el azufre si su contenido
+          es mayor de 50 ppm. Ya que la optimización no se centra en esta etápa,
+          la limpieza se incluye en Aspen como separadores teóricos modelando el
+          consumo de recursos para reactivar la cama de óxido de zinc o
+          neutralizar el agua.
+        </li>
+        <li>
+          WGS: En Aspen se modela con un reactor de Gibbs adiabático con el
+          equilibrio restringido a la reacción de desplazamiento agua-gas.
+        </li>
+        <li>
+          Rectisol: Los servicios necesarios para su operación se extraen de la
+          literatura y se introducen al modelo como correlaciones.
+        </li>
+        <li>
+          PSA y ATR: El modelo es capaz de calcular si hay excedente de H2 o si
+          se necesita extra. En el ATR, se modela la reacción endotérmica de
+          oxidación parcial y de desplazamiento de agua-gas, en las que los
+          hidrocarburos ligeros reacionan con vapor de agua y se convierten en
+          H2 y CO que es recirculado a la síntesis de FT. Este reactor se modela
+          en Aspen minimizando la energía libre de Gibss a 900 C en un entorno
+          adiabático.
+        </li>
+      </ol>
     </SpeakerNote>
   </Slide>
   <Slide>
@@ -381,10 +395,10 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
     <SpeakerNote>
       <p>
         La optimización realizada en el MOOP1 expone una frontera de Pareto con
-        una forma sigmoidal característica (ilustrada en la Figura 18), donde se
-        observa la presencia de metas en conflicto con valores positivos y
-        negativos de la huella de carbono del proceso, determinados
-        principalmente por la producción de electricidad en la planta...
+        una forma sigmoidal característica, donde se observa la presencia de
+        metas en conflicto con valores positivos y negativos de la huella de
+        carbono del proceso, determinados principalmente por la producción de
+        electricidad en la planta...
       </p>
       <p>
         Pero eso es conflictivo con el VAN. Por otro lado, se obtiene un VAN más
