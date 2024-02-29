@@ -4,7 +4,7 @@ highlightLines: 1|3-13|15|17
 ---
 
 ```py
-algorithm = e2d.optimization.moead(gen=20)
+algorithm = e2d.optimization.nsga2(gen=20)
 
 problem = e2d.project.optimization.problem(
     variables=(
@@ -15,7 +15,7 @@ problem = e2d.project.optimization.problem(
         working_fluid,
     ),
     bounds=([4, 250, 1, 1, 0], [5, 400, 20, 10, 1]),
-    objectives=(gwp, lcop, eff_storage),
+    objectives=(gwp, lcop),
 )
 
 initial_population = e2d.project.optimization.population(problem, 190)

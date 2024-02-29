@@ -79,14 +79,14 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
     </p>
     <SpeakerNote>
       Con un objetivo específico para los biocombustibles avanzados producidos a
-      partir de materias primas como algas, biodesechos, biomasa o estiércol,
-      contribuyendo al menos un 1% en 2025 y un 3.5% en 2030.
+      partir de materias primas como algas, biodesechos o biomasa, contribuyendo
+      al menos un 1% en 2025 y un 3.5% en 2030.
     </SpeakerNote>
   </Slide>
   <Slide>
     <h2>Contexto</h2>
     <p class="text-left text-pretty">
-      Existe una preocupación especial por los
+      Preocupación especial por los
       <KeyWord>combustibles para aviación</KeyWord>, ya que ésta es responsable
       del <KeyWord>3 %</KeyWord> de las emisiones totales de
       <KeyWord>gases de efecto invernadero</KeyWord>. Por ello, la
@@ -139,7 +139,7 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
     <p class="text-left text-pretty">
       <KeyWord>Optimizar</KeyWord> el diseño de la
       <KeyWord>biorrefinería</KeyWord> para la coproducción de biocombustibles y
-      electricidad, utilizando un perspectiva del ciclo de vida,
+      electricidad, utilizando una perspectiva del ciclo de vida,
       <KeyWord>minimizando impactos ambientales y costes</KeyWord>, y
       <KeyWord>maximizando la producción de bioqueroseno</KeyWord>.
     </p>
@@ -206,14 +206,7 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
     <SpeakerNote>
       <p>
         La figura ilustra de forma esquemática los principales pasos
-        involucrados en la producción de combustibles y electricidad, destacando
-        las siguientes unidades: ASU (unidad de separación de aire, air
-        separation unit), WGS (reactor de desplazamiento agua-gas, water gas
-        shift), AGR (eliminación de gases ácidos, acid gas removal), FT
-        (síntesis Fischer-Tropsch), PSA (unidad de adsorción por cambio de
-        presión, pressure swing adsorption), ATR (reactor de reformado
-        autotérmico, autothermal reforming), CHP (planta de generación
-        eléctrica, combined heat and power) y HC (unidad de hidrocracking).
+        involucrados en la producción de biocombustibles y electricidad:
       </p>
       <ol>
         <li>
@@ -234,9 +227,9 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
         </li>
         <li>
           El ratio de H2/CO para la síntesis FT es un parámetro de diseño que se
-          ajusta en un reactor de desplazamiento agua-gas: CO + H2O → CO2 + H2.
-          Con un design spec se ajusta la cantidad de syngas que tiene que ir a
-          este proceso para obtener el ratio deseado.
+          ajusta en un reactor de desplazamiento de gas de agua: CO + H2O → CO2
+          + H2. Con un design spec se ajusta la cantidad de syngas que tiene que
+          ir a este proceso para obtener el ratio deseado.
         </li>
         <li>
           El gas de síntesis contiene también una gran cantidad de CO2 que
@@ -249,10 +242,7 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
           operando entre 200 y 250 ⁰C. El reactor se modela como un reactor de
           columna de burbujas introduciendo un modelo cinético junto a un modelo
           probabilístico de distribución para los diferentes hidrocarburos hasta
-          C28. Sus principales parámetros son el ratio H2/CO, la velocidad
-          espacial del gas sobre el catalizador (GHSV), la temperatura y la
-          cantidad compuestos inertes. Todo ello se introduce en la simulación
-          mediante un calculator.
+          C28.
         </li>
         <li>
           El gas de cola de la destilación contiene una gran cantidad de H2 e
@@ -274,16 +264,21 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
         </li>
         <li>
           Finalmente, todo el calor producido en la biorrefinería, representado
-          por las líneas de puntos en el diagrama, es recuperado para producit
+          por las líneas de puntos en el diagrama, es recuperado para producir
           vapor de alta y media presión. El vapor que no es consumido en el
-          proceso, se utiliza para producir electricidad.
+          proceso, se utiliza para generar electricidad.
         </li>
       </ol>
-      <p>
-        Una vez construida la simulación, vamos a ver su implementación en la
-        herramienta eco2des...
-      </p>
       <p>Extra info:</p>
+      <p>
+        ASU (unidad de separación de aire, air separation unit), WGS (reactor de
+        desplazamiento agua-gas, water gas shift), AGR (eliminación de gases
+        ácidos, acid gas removal), FT (síntesis Fischer-Tropsch), PSA (unidad de
+        adsorción por cambio de presión, pressure swing adsorption), ATR
+        (reactor de reformado autotérmico, autothermal reforming), CHP (planta
+        de generación eléctrica, combined heat and power) y HC (unidad de
+        hidrocracking).
+      </p>
       <ol>
         <li>
           Gasificador: El gasificador se modela en 2 etapas: la primera etapa es
@@ -402,10 +397,9 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
         electricidad en la planta...
       </p>
       <p>
-        Pero eso es conflictivo con el VAN. Por otro lado, se obtiene un VAN más
-        elevado al reducir la producción excedente de electricidad, lo que
-        conlleva a una conversión más eficiente de la biomasa en
-        biocombustibles...
+        Por otro lado, se obtiene un VAN más elevado al reducir la producción
+        excedente de electricidad, lo que conlleva a una conversión más
+        eficiente de la biomasa en biocombustibles...
       </p>
       <p>
         En concreto el H2, que en el momento del análisis tenía el precio más
@@ -419,10 +413,6 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
         bajos favorecen la producción de electricidad, ya que hidrocarburos más
         pesado son producidos y por tanto más ceras son quemadas para proudcir
         electricidad.
-      </p>
-      <p>
-        Del mismo modo, ratios H2/CO más elevados por encima del valor
-        estequiométrico favorecen la producción extra de H2.
       </p>
       <p>Veamos ahora los resultados del segundo problema...</p>
     </SpeakerNote>
@@ -451,13 +441,6 @@ FT: síntesis Fischer-Tropsch; GHSV: velocidad espacial horaria del gas.
         donde valores inferiores maximizan su producción, pero reducen la
         eficiencia económica de la biorrefinería debido al mayor consumo de
         hidrógeno necesario para el hidrocracking de las ceras.
-      </p>
-      <p>
-        La relación de vapor a biomasa y la relación H2/CO impactan en menor
-        medida la producción de queroseno. Sin embargo, la relación óptima
-        vapor-biomasa para maximizar la producción de queroseno se sitúa entre
-        0,1 y 0,6, y una relación H2/CO cercana al valor estequiométrico de 2
-        favorece la maximización de este combustible.
       </p>
       <p>
         Además de estos problemas de optimización se realizó una comparación con

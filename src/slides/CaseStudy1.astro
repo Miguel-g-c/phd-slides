@@ -165,10 +165,6 @@ nivelado de producción; η: eficiencia de almacenamiento.
         almacenamiento, calculada dividiendo el valor calorífico inferior del
         GNS por la energía eléctrica consumida en el proceso.
       </p>
-      <p>
-        Del mismo modo, el objetivo de la presentación de este caso práctico es
-        demostrar las capacidades de la herramienta eco2des.
-      </p>
     </SpeakerNote>
   </Slide>
   <Slide>
@@ -224,13 +220,13 @@ nivelado de producción; η: eficiencia de almacenamiento.
           El reactor principal se simula en 3 bloques. El primero es un bloque
           RPLUG, en el que se incluye el modelo cinético 12 de Kopyscinski con
           un mecanismo de reacción en 2 etapas. Siendo la primera la reacción de
-          intercambio de agua-gas, en la que el CO2 y el H2 reaccionan para
-          formar CO y H2O. En la segunda etapa, el CO y el H2 reaccionan para
-          formar metano. El segundo bloque es un reactor RGIBSS en el que los
-          gases resultantes siguen la reacción de Boudouard (2CO -> CO2 + C), de
-          este modo simulamos la formación de coke. El tercer bloque es un
-          separador en el que se retira el coke para simular su depósito en el
-          catalizador del reactor.
+          desplazamiento de gas de agua, en la que el CO2 y el H2 reaccionan
+          para formar CO y H2O. En la segunda etapa, el CO y el H2 reaccionan
+          para formar metano. El segundo bloque es un reactor RGIBSS en el que
+          los gases resultantes siguen la reacción de Boudouard (2CO -> CO2 +
+          C), de este modo simulamos la formación de coke. El tercer bloque es
+          un separador en el que se retira el coke para simular su depósito en
+          el catalizador del reactor.
         </li>
         <li>
           El calor del gas a la salida del reactor y el desprendido en la
@@ -240,7 +236,8 @@ nivelado de producción; η: eficiencia de almacenamiento.
         </li>
         <li>
           Por último el gas natural sintético se prepara para su inyección en la
-          red. Para lo que tiene que secarse y eliminar el exceso de H2 y CO2.
+          red. Para lo que tiene que secarse y eliminar el exceso de H2 y CO2
+          (PSA Y MEA).
         </li>
       </ol>
       <p>
@@ -435,7 +432,7 @@ nivelado de producción; η: eficiencia de almacenamiento.
         segundo NSGA-II.
       </p>
       <p>
-        A modo ilustrativo, veamos como se implementa el primer problema en
+        A modo ilustrativo, veamos como se implementa el segundo problema en
         eco2des...
       </p>
     </SpeakerNote>
@@ -453,10 +450,6 @@ nivelado de producción; η: eficiencia de almacenamiento.
         </li>
         <li>El primer objetivo es el cambio climático...</li>
         <li>El segundo es el coste nivelado de producción...</li>
-        <li>
-          El tercero es la eficiencia de almacenamiento. Que vamos a ver paso a
-          pa so...
-        </li>
       </ol>
       <p>El siguiente paso sería definir las variables de decisión...</p>
     </SpeakerNote>
@@ -499,7 +492,7 @@ nivelado de producción; η: eficiencia de almacenamiento.
       </ol>
       <p>
         Y ya estaría, en la variable evolved_population tendríamos la solución
-        al problema. El segundo problema se implementaría de forma similar. Así
+        al problema. El primer problema se implementaría de forma similar. Así
         que pasemos ahora a la fase de interpretación, vamos a visualizar la
         solución y extraer algunas conclusiones...
       </p>
@@ -542,13 +535,13 @@ nivelado de producción; η: eficiencia de almacenamiento.
       </p>
       <p>Estos objetivos sí que son conflictivos...</p>
       <p>El precio se dispara, centrémonos en la parte baja...</p>
-      <p>De hecho si volvemos a la vista general...</p>
+      <p>
+        De hecho si volvemos a la vista general, podemos observar que los
+        drivers principales son el tamaño del reactor y el fluido de trabajo...
+      </p>
       <p>
         Se concluye que para este problema tendría sentido minimizar únicamente
         los costes o el impacto ambiental.
-      </p>
-      <p>
-        Otra observación es que el principal driver es el fluido de trabajo...
       </p>
       <p>Veamos las discusiones y conclusiones de este caso...</p>
     </SpeakerNote>
@@ -560,35 +553,11 @@ nivelado de producción; η: eficiencia de almacenamiento.
       eólica en la red de gas natural muestra un
       <KeyWord>rendimiento ambiental y económico no conflictivo</KeyWord>.
     </p>
-  </Slide>
-  <Slide>
-    <h2>Interpretación</h2>
-    <p class="text-left text-pretty">
-      Si queremos <KeyWord>maximizar la eficiencia</KeyWord>, se logra con un
-      ratio H<sub>2</sub>/CO<sub>2</sub> cercano a la relación estequiométrica de
-      4, una temperatura de 285 ⁰C, una longitud de reactor de 16.83 m y una relación
-      longitud-diámetro de 7.92, utilizando ciclopentano como fluido de trabajo
-    </p>
     <SpeakerNote>
-      <p>
-        Lo que aumenta la eficiencia del ciclo de Rankine a temperaturas más
-        bajas, incrementando el excedente eléctrico en la planta y, por ende, la
-        eficiencia de almacenamiento de la planta. Sin embargo, optar por un
-        reactor más grande y usar ciclohexano implica un aumento en el CAPEX y
-        OPEX del proceso, así como un incremento en el indicador de
-        calentamiento global, a pesar de producir más electricidad que disminuye
-        la contribución de la producción eólica; la contribución de las
-        actividades de la tecnosfera relacionadas con el uso del fluido de
-        trabajo es más alta y relevante en la evaluación de impacto final.
-      </p>
-      <p>
-        A pesar de los incrementos en eficiencia de almacenamiento, como hemos
-        dicho el incremento es minúsculo, siendo el mejor escenario en estos
-        términos solo un 1% superior al mejor escenario en términos económicos y
-        ambientales, pero con un LCOP 24 veces mayor y un GWP casi 2 veces
-        superior. Por tanto, se recomienda una optimización basada en un
-        rendimiento ambiental y económico no conflictivo,
-      </p>
+      Además, las ganancias en eficiencia de almacenamiento son minúsculas en
+      comparación con el detrimento del resto de objetivos, por eso si minimizan
+      únicamente y conjuntamente el coste nivelado de producción y el potencial
+      de calentamiento global.
     </SpeakerNote>
   </Slide>
   <Slide>
