@@ -5,11 +5,12 @@ interface Tech {
 }
 
 interface Props {
+  id: string;
   size: number;
   technologies: Tech[];
 }
 
-const { size, technologies } = Astro.props;
+const { id, size, technologies } = Astro.props;
 const rems = `${size / 4}rem`;
 ---
 
@@ -20,7 +21,7 @@ const rems = `${size / 4}rem`;
   {
     technologies.map((tech) => (
       <div title={tech.name}>
-        <tech.icon class="tech-icon" />
+        <tech.icon id={id} class="tech-icon" />
       </div>
     ))
   }
